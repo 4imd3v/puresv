@@ -61,3 +61,8 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the showcase app.
   nothing.
 - **Validate with** `vp check`, `vp test`, and `pnpm run build` (which also runs
   `svelte-package` + `publint`).
+
+# NOTES
+
+- DO NOT run dev server, let user run it manually
+- DO NOT commit changes, let user commit them manually or if user ask to commit
