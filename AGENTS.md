@@ -34,7 +34,9 @@ release. Add a tool name to select part of the graph. For example, run
 
 # PureSV conventions
 
-Svelte 5 component library. `src/lib` ships, `src/routes` is the showcase app.
+Svelte 5 component library. `src/lib` ships, `src/routes` is the docs site.
+
+## Library (`src/lib`)
 
 - **No runtime dependencies.** Everything is Svelte + CSS. Adding a dependency
   needs a strong reason.
@@ -59,12 +61,46 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the showcase app.
 - **Forward native attributes** with `let { …rest }: Props = $props()` and
   `{...rest}` on the root element, typed via `HTMLAttributes` from
   `svelte/elements`.
-- **Every component gets a test.** Component tests live next to the component
-  and run under `vp test`. Svelte 5 snippets render into an anchor node, so build
-  test snippets with `createRawSnippet` — a plain `() => "text"` renders
-  nothing.
-- **Validate with** `vp check`, `vp test`, and `pnpm run build` (which also runs
-  `svelte-package` + `publint`).
+- **Every component gets a test.** Tests live next to the component and run
+  under `vp test`. Svelte 5 snippets render into an anchor node, so build test
+  snippets with `createRawSnippet` — a plain `() => "text"` renders nothing.
+
+## Docs site (`src/routes`)
+
+- **`+layout.svelte`** holds the top bar, footer and the theme `$state` — keep
+  the theme there so it survives client-side navigation.
+- **The homepage has no sidebar.** The sidebar lives in
+  `components/+layout.svelte`, which also owns the `13rem / 1fr` grid.
+- **The top nav is the mobile nav.** The sidebar is `display: none` below
+  `60rem`; do not hide the top nav at that breakpoint, the homepage would have
+  no navigation at all.
+- **Shared doc pieces** (`DocPage`, `Demo`, `PropsTable`) live in
+  `src/routes/_shared/` behind the `index.ts` barrel. From
+  `components/<name>/+page.svelte` that is `../../_shared/index` — two levels.
+- **Types live in `_shared/types.ts`**, never re-exported from a `.svelte` file.
+- **`page` comes from `$app/state`**, not `$app/stores`, and it is not a store:
+  read `page.url.pathname` with no `$` prefix.
+- **Per-page `<title>`** is set by `DocPage`; `app.html` carries the fallback.
+- **Homepage CTAs are plain `<a>`**, not `<Button>` with `goto()` — real links
+  work without JS.
+
+## Gotchas that have already cost time
+
+- **`.svelte` → `.svelte` imports do not resolve** under `svelte-check` or
+  oxlint, and a type cannot be re-exported from a `.svelte` file. Always reach
+  shared components through the `_shared/index.ts` barrel.
+- **Component tests need `resolve.conditions: ["browser"]`.** Without it the
+  SvelteKit vite plugin resolves Svelte's server build and `mount()` throws
+  `lifecycle_function_unavailable`. This is why `vitest.config.ts` is separate
+  from `vite.config.ts`: the condition must not reach the app build.
+- **Homepage grids use explicit `repeat(N)`**, never `auto-fit`. With a fixed
+  item count `auto-fit` fits whatever the width allows and strands a lone card
+  on a second row.
+
+## Validate with
+
+`vp check`, `vp test`, and `pnpm run build` (which also runs `svelte-package` +
+`publint`).
 
 # NOTES
 
