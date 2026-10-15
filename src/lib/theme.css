@@ -41,6 +41,17 @@
     --puresv-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.08);
     --puresv-shadow-md: 0 4px 12px rgb(15 23 42 / 0.1);
     --puresv-duration: 150ms;
+    --puresv-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Derived. These reference the palette, so they follow the active theme
+		   without having to be repeated in the dark blocks below. */
+    --puresv-accent-soft: color-mix(in oklab, var(--puresv-accent) 12%, transparent);
+    --puresv-accent-soft-hover: color-mix(in oklab, var(--puresv-accent) 20%, transparent);
+    --puresv-accent-ring: color-mix(in oklab, var(--puresv-accent) 35%, transparent);
+    --puresv-border-strong: color-mix(in oklab, var(--puresv-border) 55%, var(--puresv-text));
+    --puresv-shadow-accent: 0 1px 2px color-mix(in oklab, var(--puresv-accent) 30%, transparent);
+    --puresv-shadow-accent-hover: 0 6px 16px
+      color-mix(in oklab, var(--puresv-accent) 32%, transparent);
   }
 
   /* Palette (dark) — repeated so a forced theme works even when a build step

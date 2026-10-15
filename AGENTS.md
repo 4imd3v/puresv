@@ -43,6 +43,10 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the showcase app.
 - **Design tokens only.** Never hardcode a color, radius, or spacing value in a
   component. Use `var(--puresv-*)` from `src/lib/theme.css`. Need a new token?
   Add it to `theme.css` and use it.
+- **Every component imports `../theme.css` in its own `<script>`.** Do NOT move
+  that import into `src/lib/index.ts` — Vite's `sideEffects` globs do not match
+  `.css` files, so a package-level side-effect import gets tree-shaken away and
+  consumers end up with unstyled components. Verified against Vite 8.
 - **Wrap component styles in `@layer puresv { … }`** so consumer CSS (unlayered)
   always wins. Do the same for the global stylesheet.
 - **Theming** is plain custom-property overrides in `src/lib/theme.css`: a light

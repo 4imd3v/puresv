@@ -4,6 +4,8 @@
   const themes = ["system", "light", "dark"] as const;
   let theme = $state<(typeof themes)[number]>("system");
 
+  const variants = ["solid", "soft", "outline", "ghost", "link"] as const;
+
   $effect(() => {
     const root = document.documentElement;
     if (theme === "system") root.removeAttribute("data-theme");
@@ -35,15 +37,20 @@
   <section>
     <h2>Button</h2>
     <div class="row">
-      <Button onclick={() => alert("clicked")}>Solid</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button disabled>Disabled</Button>
+      {#each variants as variant (variant)}
+        <Button {variant} onclick={() => alert(variant)}>{variant}</Button>
+      {/each}
+      <Button disabled>disabled</Button>
     </div>
     <div class="row">
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>
+    </div>
+    <div class="row">
+      <Button variant="soft" size="sm">Small</Button>
+      <Button variant="soft" size="md">Medium</Button>
+      <Button variant="soft" size="lg">Large</Button>
     </div>
   </section>
 

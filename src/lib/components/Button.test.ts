@@ -30,4 +30,13 @@ describe("Button", () => {
     expect(button.type).toBe("submit");
     expect(button.disabled).toBe(true);
   });
+
+  // Guards against a typo in the Variant union silently rendering unstyled.
+  it.each(["solid", "soft", "outline", "ghost", "link"] as const)(
+    "applies the %s variant",
+    (variant) => {
+      render(Button, { props: { variant, children: text("Save") } });
+      expect(screen.getByRole("button").dataset.variant).toBe(variant);
+    },
+  );
 });

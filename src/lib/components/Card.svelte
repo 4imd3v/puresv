@@ -1,4 +1,6 @@
 <script lang="ts">
+	// Design tokens — imported per component so they survive tree-shaking.
+	import "../theme.css";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 

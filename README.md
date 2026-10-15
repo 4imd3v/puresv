@@ -36,7 +36,8 @@ Peer dependency: `svelte@^5`.
 ```
 
 Importing anything from `puresv` also loads the design tokens, so components
-look right with no extra setup. If you only want the tokens:
+look right with no extra setup — each component imports `theme.css` itself, so
+only the CSS you actually use gets bundled. If you only want the tokens:
 
 ```js
 import "puresv/theme.css";
@@ -74,14 +75,32 @@ Both branches are plain custom-property overrides — no `light-dark()`, so the
 toggle keeps working even when a build step (Lightning CSS, older targets)
 downlevels modern color functions.
 
+PureSV styles its own components only. Give your page the matching canvas:
+
+```css
+body {
+  background-color: var(--puresv-canvas);
+  color: var(--puresv-text);
+}
+```
+
 ## Components
 
 ### Button
 
-| Prop      | Type                              | Default   |
-| --------- | --------------------------------- | --------- |
-| `variant` | `"solid" \| "outline" \| "ghost"` | `"solid"` |
-| `size`    | `"sm" \| "md" \| "lg"`            | `"md"`    |
+| Prop      | Type                                                  | Default   |
+| --------- | ----------------------------------------------------- | --------- |
+| `variant` | `"solid" \| "soft" \| "outline" \| "ghost" \| "link"` | `"solid"` |
+| `size`    | `"sm" \| "md" \| "lg"`                                | `"md"`    |
+
+- **solid** — the primary action. Accent fill, tinted elevation, lifts 1px on
+  hover and presses back down on click.
+- **soft** — tinted accent background, for a secondary action that still needs to
+  read as "accent".
+- **outline** — bordered and transparent, for an action next to a solid one.
+- **ghost** — no border, for toolbars and dense rows.
+- **link** — text only. Sheds the height and padding from `size` but keeps its
+  font size.
 
 Also accepts every native `<button>` attribute (`type`, `disabled`,
 `aria-*`, `onclick`, …) — they are forwarded with `{...rest}`.
