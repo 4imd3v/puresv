@@ -1,79 +1,128 @@
-# Svelte library
+# PureSV
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+Reusable **Svelte 5** UI components styled with **modern CSS**.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+No runtime dependencies. No Tailwind, no utility classes, no CSS-in-JS — just
+Svelte components, scoped styles, and CSS custom properties.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+## Install
 
 ```sh
-# recreate this project
-npx sv@1.1.1 create --template library --types ts --no-install ./
+pnpm add puresv
 ```
 
-## Adding features
+Peer dependency: `svelte@^5`.
 
-Add features to your project with `sv add`:
+## Usage
+
+```svelte
+<script>
+  import { Button, Card, Badge } from "puresv";
+</script>
+
+<Card>
+  {#snippet header()}
+    Monthly report
+  {/snippet}
+
+  <Badge tone="success">paid</Badge>
+
+  {#snippet footer()}
+    Updated 2 minutes ago
+  {/snippet}
+</Card>
+
+<Button variant="outline" size="lg" onclick={() => save()}>Save</Button>
+```
+
+Importing anything from `puresv` also loads the design tokens, so components
+look right with no extra setup. If you only want the tokens:
+
+```js
+import "puresv/theme.css";
+```
+
+## Theming
+
+Every visual value is a CSS custom property prefixed `--puresv-`. Override any
+of them in your own stylesheet — component styles live inside
+`@layer puresv`, so plain (unlayered) CSS always wins:
+
+```css
+:root {
+  --puresv-accent: oklch(0.62 0.19 275);
+  --puresv-radius-md: 0.25rem;
+}
+```
+
+Light/dark follows the OS by default. Force a palette with `data-theme` on
+`<html>`:
+
+```svelte
+<script>
+  let theme = $state("system");
+
+  $effect(() => {
+    const root = document.documentElement;
+    if (theme === "system") root.removeAttribute("data-theme");
+    else root.dataset.theme = theme;
+  });
+</script>
+```
+
+Both branches are plain custom-property overrides — no `light-dark()`, so the
+toggle keeps working even when a build step (Lightning CSS, older targets)
+downlevels modern color functions.
+
+## Components
+
+### Button
+
+| Prop      | Type                              | Default   |
+| --------- | --------------------------------- | --------- |
+| `variant` | `"solid" \| "outline" \| "ghost"` | `"solid"` |
+| `size`    | `"sm" \| "md" \| "lg"`            | `"md"`    |
+
+Also accepts every native `<button>` attribute (`type`, `disabled`,
+`aria-*`, `onclick`, …) — they are forwarded with `{...rest}`.
+
+### Card
+
+Optional `header` and `footer` snippets around a default body slot. Accepts
+native `<div>` attributes.
+
+### Badge
+
+| Prop   | Type                                                          | Default     |
+| ------ | ------------------------------------------------------------- | ----------- |
+| `tone` | `"neutral" \| "accent" \| "success" \| "warning" \| "danger"` | `"neutral"` |
+
+## Adding a component
+
+1. Create `src/lib/components/MyThing.svelte`.
+2. Wrap its `<style>` rules in `@layer puresv { … }` so consumers can override
+   them.
+3. Style with `var(--puresv-*)` tokens only — no hardcoded colors or spacing.
+4. Re-export it from `src/lib/index.ts`.
+5. Add `MyThing.test.ts` next to it and run `vp test`.
+
+## Development
 
 ```sh
-npx sv add
+vp dev          # showcase app with every component
+vp test         # component tests (Vitest + happy-dom)
+vp check        # format, lint, type check
+pnpm run build  # showcase build + library build into dist/
 ```
 
-For example, to add Tailwind CSS:
-
-```sh
-npx sv add tailwindcss
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
-
-```sh
-npm pack
-```
-
-To create a production version of your showcase app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Everything in `src/lib` ships. Everything in `src/routes` is the showcase app
+and is not published.
 
 ## Publishing
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+`pnpm run build` runs `svelte-package` (source of truth is `src/lib`) and
+`publint`. Update `version`, then `npm publish`.
 
-To publish your library to [npm](https://www.npmjs.com):
+## License
 
-```sh
-npm publish
-```
+MIT

@@ -1,0 +1,84 @@
+@layer puresv {
+  :root {
+    /* Typography */
+    --puresv-font:
+      ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --puresv-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --puresv-text-xs: 0.75rem;
+    --puresv-text-sm: 0.875rem;
+    --puresv-text-md: 1rem;
+    --puresv-text-lg: 1.125rem;
+
+    /* Spacing */
+    --puresv-space-1: 0.25rem;
+    --puresv-space-2: 0.5rem;
+    --puresv-space-3: 0.75rem;
+    --puresv-space-4: 1rem;
+    --puresv-space-5: 1.5rem;
+    --puresv-space-6: 2rem;
+
+    /* Radii */
+    --puresv-radius-sm: 0.375rem;
+    --puresv-radius-md: 0.5rem;
+    --puresv-radius-lg: 0.75rem;
+    --puresv-radius-full: 999px;
+
+    /* Palette (light) */
+    --puresv-canvas: #ffffff;
+    --puresv-surface: #f7f8fa;
+    --puresv-text: #0f172a;
+    --puresv-text-muted: #5f6e85;
+    --puresv-border: #e3e8ef;
+    --puresv-accent: #4f46e5;
+    --puresv-accent-hover: #4338ca;
+    --puresv-on-accent: #ffffff;
+    --puresv-success: #15803d;
+    --puresv-warning: #b45309;
+    --puresv-danger: #b91c1c;
+    --puresv-ring: #6366f1;
+
+    /* Effects */
+    --puresv-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.08);
+    --puresv-shadow-md: 0 4px 12px rgb(15 23 42 / 0.1);
+    --puresv-duration: 150ms;
+  }
+
+  /* Palette (dark) — repeated so a forced theme works even when a build step
+	   downlevels the OS-preference branch. Keep the two blocks in sync. */
+  :root[data-theme="dark"] {
+    --puresv-canvas: #0b0e14;
+    --puresv-surface: #12171f;
+    --puresv-text: #e6edf7;
+    --puresv-text-muted: #94a3b8;
+    --puresv-border: #28303d;
+    --puresv-accent: #818cf8;
+    --puresv-accent-hover: #a5b4fc;
+    --puresv-on-accent: #1e1b4b;
+    --puresv-success: #4ade80;
+    --puresv-warning: #fbbf24;
+    --puresv-danger: #f87171;
+    --puresv-ring: #a5b4fc;
+    --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+    --puresv-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+  }
+
+  /* Follow the OS when no theme is forced. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --puresv-canvas: #0b0e14;
+      --puresv-surface: #12171f;
+      --puresv-text: #e6edf7;
+      --puresv-text-muted: #94a3b8;
+      --puresv-border: #28303d;
+      --puresv-accent: #818cf8;
+      --puresv-accent-hover: #a5b4fc;
+      --puresv-on-accent: #1e1b4b;
+      --puresv-success: #4ade80;
+      --puresv-warning: #fbbf24;
+      --puresv-danger: #f87171;
+      --puresv-ring: #a5b4fc;
+      --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+      --puresv-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+    }
+  }
+}

@@ -1,11 +1,20 @@
 {
   "name": "puresv",
   "version": "0.0.1",
+  "description": "Pure Svelte 5 UI components styled with modern CSS. No runtime dependencies, no utility-class framework.",
   "keywords": [
-    "svelte"
+    "components",
+    "css",
+    "design-system",
+    "svelte",
+    "svelte5",
+    "ui"
   ],
+  "license": "MIT",
   "files": [
     "dist",
+    "README.md",
+    "LICENSE",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
@@ -23,22 +32,28 @@
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js"
-    }
+    },
+    "./theme.css": "./dist/theme.css",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "dev": "vp dev",
-    "build": "vp build && npm run prepack",
+    "build": "vp build && pnpm run prepack",
     "preview": "vp preview",
     "prepare": "vp config && svelte-kit sync || echo ''",
     "prepack": "svelte-kit sync && svelte-package && publint",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "vp test",
+    "test:watch": "vp test --watch"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^8.0.0",
     "@sveltejs/kit": "^3.0.0",
     "@sveltejs/package": "^2.5.8",
     "@sveltejs/vite-plugin-svelte": "^7.2.0",
+    "@testing-library/svelte": "^5.4.2",
+    "happy-dom": "^21.0.1",
     "publint": "^0.3.21",
     "svelte": "^5.57.1",
     "svelte-check": "^4.6.0",

@@ -25,3 +25,33 @@ release. Add a tool name to select part of the graph. For example, run
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
 <!--VITE PLUS END-->
+
+# PureSV conventions
+
+Svelte 5 component library. `src/lib` ships, `src/routes` is the showcase app.
+
+- **No runtime dependencies.** Everything is Svelte + CSS. Adding a dependency
+  needs a strong reason.
+- **No Tailwind / utility classes.** Components use scoped `<style>` blocks and
+  CSS custom properties.
+- **Design tokens only.** Never hardcode a color, radius, or spacing value in a
+  component. Use `var(--puresv-*)` from `src/lib/theme.css`. Need a new token?
+  Add it to `theme.css` and use it.
+- **Wrap component styles in `@layer puresv { … }`** so consumer CSS (unlayered)
+  always wins. Do the same for the global stylesheet.
+- **Theming** is plain custom-property overrides in `src/lib/theme.css`: a light
+  base, a dark block for `:root[data-theme="dark"]`, and the same dark block
+  under `@media (prefers-color-scheme: dark)` for the OS default. Do not use
+  `light-dark()` — build pipelines that downlevel it (Lightning CSS) turn the
+  `data-theme` toggle into a no-op. Keep the two dark blocks in sync.
+- **Snippets over slots.** Svelte 5 runes mode: `children: Snippet`, `{@render
+  children()}`, named snippets via `{#snippet header()}`.
+- **Forward native attributes** with `let { …rest }: Props = $props()` and
+  `{...rest}` on the root element, typed via `HTMLAttributes` from
+  `svelte/elements`.
+- **Every component gets a test.** Component tests live next to the component
+  and run under `vp test`. Svelte 5 snippets render into an anchor node, so build
+  test snippets with `createRawSnippet` — a plain `() => "text"` renders
+  nothing.
+- **Validate with** `vp check`, `vp test`, and `pnpm run build` (which also runs
+  `svelte-package` + `publint`).
