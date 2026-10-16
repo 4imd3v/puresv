@@ -106,6 +106,21 @@
       name: "Progress",
       summary: "A determinate bar that scales on the compositor.",
     },
+    {
+      href: "/components/modal",
+      name: "Modal",
+      summary: "A native dialog with focus trap, Escape and backdrop close.",
+    },
+    {
+      href: "/components/tabs",
+      name: "Tabs",
+      summary: "An accessible tab list with arrow-key navigation.",
+    },
+    {
+      href: "/components/accordion",
+      name: "Accordion",
+      summary: "A disclosure list built on the native details element.",
+    },
   ];
 </script>
 
