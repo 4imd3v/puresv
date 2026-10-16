@@ -32,13 +32,15 @@
 
 <style>
 	@layer puresv {
+		/* A card is defined by its border and a hairline top highlight — not a
+		   fuzzy drop shadow. Canvas background keeps it crisp against the page. */
 		[data-card] {
 			display: flex;
 			flex-direction: column;
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-lg);
-			background-color: var(--puresv-surface);
-			box-shadow: var(--puresv-shadow-sm);
+			background-color: var(--puresv-canvas);
+			box-shadow: inset 0 1px 0 var(--puresv-inset-hl);
 		}
 
 		/* An href turns the whole card into a link, so it reads as interactive. */
@@ -47,12 +49,11 @@
 			text-decoration: none;
 			transition:
 				border-color var(--puresv-duration) var(--puresv-ease-out),
-				transform var(--puresv-duration) var(--puresv-ease-out);
+				background-color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
 		a:hover {
 			border-color: var(--puresv-border-strong);
-			transform: translateY(-2px);
 		}
 
 		a:focus-visible {
@@ -68,7 +69,8 @@
 		header {
 			border-bottom: 1px solid var(--puresv-border);
 			font-size: var(--puresv-text-lg);
-			font-weight: 600;
+			font-weight: var(--puresv-weight-semibold);
+			letter-spacing: -0.01em;
 		}
 
 		footer {
@@ -79,12 +81,6 @@
 
 		[data-part="body"] {
 			padding: var(--puresv-space-4);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			a:hover {
-				transform: none;
-			}
 		}
 	}
 </style>

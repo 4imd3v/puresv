@@ -55,7 +55,7 @@
       margin: 0 0 var(--puresv-space-2);
       padding-inline-start: var(--puresv-space-3);
       font-size: var(--puresv-text-xs);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--puresv-text-muted);
@@ -90,7 +90,7 @@
     .nav-group a[aria-current="page"] {
       background-color: var(--puresv-accent-soft);
       color: var(--puresv-accent);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-medium);
     }
 
     main {

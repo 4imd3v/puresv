@@ -55,8 +55,8 @@
 		}
 
 		.label {
-			font-size: var(--puresv-text-sm);
-			font-weight: 550;
+			font-size: var(--puresv-text-md);
+			font-weight: var(--puresv-weight-medium);
 			color: var(--puresv-text);
 		}
 
@@ -70,7 +70,7 @@
 			appearance: none;
 			min-width: 0;
 			width: 100%;
-			height: 2.5rem;
+			height: 2.25rem;
 			padding-inline: var(--puresv-space-3);
 			padding-inline-end: var(--puresv-space-6);
 			border: 1px solid var(--puresv-border);
@@ -78,7 +78,7 @@
 			background-color: var(--puresv-canvas);
 			color: var(--puresv-text);
 			font-family: var(--puresv-font);
-			font-size: var(--puresv-text-sm);
+			font-size: var(--puresv-text-md);
 			cursor: pointer;
 			transition:
 				border-color var(--puresv-duration) var(--puresv-ease-out),
@@ -103,7 +103,7 @@
 		select:focus-visible {
 			outline: none;
 			border-color: var(--puresv-accent);
-			box-shadow: 0 0 0 3px var(--puresv-accent-ring);
+			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-accent-ring);
 		}
 
 		select:disabled {
@@ -118,7 +118,7 @@
 
 		.field[data-error] select:focus-visible {
 			border-color: var(--puresv-danger);
-			box-shadow: 0 0 0 3px var(--puresv-danger-ring);
+			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-danger-ring);
 		}
 
 		.error {

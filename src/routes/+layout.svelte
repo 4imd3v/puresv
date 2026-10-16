@@ -74,8 +74,8 @@
       z-index: 100;
       padding: var(--puresv-space-2) var(--puresv-space-4);
       border-radius: var(--puresv-radius-md);
-      background-color: var(--puresv-accent);
-      color: var(--puresv-on-accent);
+      background-color: var(--puresv-primary);
+      color: var(--puresv-on-primary);
     }
 
     .skip:focus {
@@ -108,7 +108,7 @@
       align-items: center;
       border-radius: var(--puresv-radius-md);
       color: var(--puresv-text);
-      font-weight: 650;
+      font-weight: var(--puresv-weight-semibold);
       letter-spacing: -0.02em;
       text-decoration: none;
     }
@@ -116,14 +116,14 @@
     .brand-mark {
       display: grid;
       place-items: center;
-      width: 1.75rem;
-      height: 1.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
       border-radius: var(--puresv-radius-sm);
-      background-color: var(--puresv-accent);
-      color: var(--puresv-on-accent);
+      background-color: var(--puresv-primary);
+      color: var(--puresv-on-primary);
       font-size: var(--puresv-text-xs);
-      font-weight: 700;
-      letter-spacing: 0;
+      font-weight: var(--puresv-weight-semibold);
+      letter-spacing: -0.01em;
     }
 
     .topnav {
@@ -136,8 +136,8 @@
       padding: var(--puresv-space-2) var(--puresv-space-3);
       border-radius: var(--puresv-radius-md);
       color: var(--puresv-text-muted);
-      font-size: var(--puresv-text-sm);
-      font-weight: 550;
+      font-size: var(--puresv-text-md);
+      font-weight: var(--puresv-weight-medium);
       text-decoration: none;
       transition:
         background-color var(--puresv-duration) var(--puresv-ease),

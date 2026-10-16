@@ -40,8 +40,8 @@
 		}
 
 		.label {
-			font-size: var(--puresv-text-sm);
-			font-weight: 550;
+			font-size: var(--puresv-text-md);
+			font-weight: var(--puresv-weight-medium);
 			color: var(--puresv-text);
 		}
 
@@ -54,7 +54,7 @@
 			background-color: var(--puresv-canvas);
 			color: var(--puresv-text);
 			font-family: var(--puresv-font);
-			font-size: var(--puresv-text-sm);
+			font-size: var(--puresv-text-md);
 			line-height: 1.6;
 			resize: vertical;
 			transition:
@@ -73,7 +73,7 @@
 		textarea:focus-visible {
 			outline: none;
 			border-color: var(--puresv-accent);
-			box-shadow: 0 0 0 3px var(--puresv-accent-ring);
+			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-accent-ring);
 		}
 
 		textarea:disabled {
@@ -88,7 +88,7 @@
 
 		.field[data-error] textarea:focus-visible {
 			border-color: var(--puresv-danger);
-			box-shadow: 0 0 0 3px var(--puresv-danger-ring);
+			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-danger-ring);
 		}
 
 		.error {

@@ -72,8 +72,9 @@
 			background: none;
 			color: var(--puresv-text-muted);
 			font-family: var(--puresv-font);
-			font-size: var(--puresv-text-sm);
-			font-weight: 550;
+			font-size: var(--puresv-text-md);
+			font-weight: var(--puresv-weight-medium);
+			letter-spacing: -0.005em;
 			cursor: pointer;
 			transition: color var(--puresv-duration) var(--puresv-ease-out);
 		}
@@ -83,7 +84,7 @@
 		}
 
 		.tab[aria-selected="true"] {
-			color: var(--puresv-accent);
+			color: var(--puresv-text);
 		}
 
 		.tab[aria-selected="true"]::after {
@@ -94,7 +95,7 @@
 			left: var(--puresv-space-2);
 			height: 2px;
 			border-radius: var(--puresv-radius-full);
-			background-color: var(--puresv-accent);
+			background-color: var(--puresv-text);
 		}
 
 		.tab:focus-visible {

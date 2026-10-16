@@ -104,7 +104,7 @@
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-lg);
 			background-color: var(--puresv-canvas);
-			box-shadow: var(--puresv-shadow-md);
+			box-shadow: var(--puresv-shadow-lg);
 		}
 
 		.head {
@@ -119,7 +119,8 @@
 		.title {
 			margin: 0;
 			font-size: var(--puresv-text-lg);
-			font-weight: 600;
+			font-weight: var(--puresv-weight-semibold);
+			letter-spacing: -0.01em;
 		}
 
 		.close {

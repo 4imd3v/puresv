@@ -28,10 +28,12 @@
 			gap: var(--puresv-space-2);
 			padding-block: var(--puresv-space-1);
 			padding-inline: var(--puresv-space-2);
+			border: 1px solid color-mix(in oklab, currentColor 22%, transparent);
 			border-radius: var(--puresv-radius-full);
 			font-size: var(--puresv-text-xs);
-			font-weight: 600;
+			font-weight: var(--puresv-weight-medium);
 			line-height: 1.4;
+			letter-spacing: -0.005em;
 		}
 
 		.dot {
@@ -43,28 +45,29 @@
 		}
 
 		span[data-tone="neutral"] {
+			border-color: var(--puresv-border);
 			background-color: var(--puresv-surface);
 			color: var(--puresv-text-muted);
 		}
 
 		span[data-tone="accent"] {
-			background-color: var(--puresv-accent);
-			color: var(--puresv-on-accent);
+			background-color: var(--puresv-accent-soft);
+			color: var(--puresv-accent);
 		}
 
 		span[data-tone="success"] {
-			background-color: var(--puresv-success);
-			color: var(--puresv-canvas);
+			background-color: var(--puresv-success-soft);
+			color: var(--puresv-success);
 		}
 
 		span[data-tone="warning"] {
-			background-color: var(--puresv-warning);
-			color: var(--puresv-canvas);
+			background-color: var(--puresv-warning-soft);
+			color: var(--puresv-warning);
 		}
 
 		span[data-tone="danger"] {
-			background-color: var(--puresv-danger);
-			color: var(--puresv-canvas);
+			background-color: var(--puresv-danger-soft);
+			color: var(--puresv-danger);
 		}
 	}
 </style>

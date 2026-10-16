@@ -40,21 +40,21 @@
 		}
 
 		.label {
-			font-size: var(--puresv-text-sm);
-			font-weight: 550;
+			font-size: var(--puresv-text-md);
+			font-weight: var(--puresv-weight-medium);
 			color: var(--puresv-text);
 		}
 
 		input {
 			min-width: 0;
-			height: 2.5rem;
+			height: 2.25rem;
 			padding-inline: var(--puresv-space-3);
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-md);
 			background-color: var(--puresv-canvas);
 			color: var(--puresv-text);
 			font-family: var(--puresv-font);
-			font-size: var(--puresv-text-sm);
+			font-size: var(--puresv-text-md);
 			transition:
 				border-color var(--puresv-duration) var(--puresv-ease-out),
 				box-shadow var(--puresv-duration) var(--puresv-ease-out);
@@ -68,10 +68,12 @@
 			border-color: var(--puresv-border-strong);
 		}
 
+		/* Crisp double-ring focus: a canvas gap, then the accent ring. Reads as
+		   precise rather than a soft colored glow. */
 		input:focus-visible {
 			outline: none;
 			border-color: var(--puresv-accent);
-			box-shadow: 0 0 0 3px var(--puresv-accent-ring);
+			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-accent-ring);
 		}
 
 		input:disabled {

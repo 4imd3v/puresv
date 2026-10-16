@@ -42,10 +42,11 @@
 		.track {
 			position: relative;
 			flex-shrink: 0;
-			width: 2.75rem;
-			height: 1.5rem;
+			width: 2.5rem;
+			height: 1.375rem;
 			border-radius: var(--puresv-radius-full);
-			background-color: var(--puresv-border);
+			background-color: var(--puresv-border-strong);
+			box-shadow: inset 0 1px 1px rgb(0 0 0 / 0.06);
 			transition: background-color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
@@ -53,11 +54,11 @@
 			position: absolute;
 			top: 2px;
 			left: 2px;
-			width: 1.25rem;
-			height: 1.25rem;
+			width: 1.125rem;
+			height: 1.125rem;
 			border-radius: var(--puresv-radius-full);
-			background-color: var(--puresv-canvas);
-			box-shadow: var(--puresv-shadow-sm);
+			background-color: #ffffff;
+			box-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 0 0 0.5px rgb(0 0 0 / 0.04);
 			transition: transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
@@ -66,7 +67,7 @@
 		}
 
 		input:checked + .track .knob {
-			transform: translateX(1.25rem);
+			transform: translateX(1.125rem);
 		}
 
 		input:focus-visible + .track {

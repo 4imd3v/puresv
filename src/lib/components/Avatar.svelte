@@ -70,7 +70,7 @@
 			border-radius: var(--puresv-radius-full);
 			background-color: var(--puresv-surface);
 			color: var(--puresv-text-muted);
-			font-weight: 600;
+			font-weight: var(--puresv-weight-medium);
 			user-select: none;
 		}
 

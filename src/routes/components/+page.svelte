@@ -52,7 +52,7 @@
     .head h1 {
       margin: 0 0 var(--puresv-space-3);
       font-size: clamp(2rem, 5vw, 2.75rem);
-      font-weight: 700;
+      font-weight: var(--puresv-weight-semibold);
       line-height: 1.1;
       letter-spacing: -0.03em;
     }
@@ -72,7 +72,7 @@
     .group h2 {
       margin: 0 0 var(--puresv-space-3);
       font-size: var(--puresv-text-xs);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--puresv-text-muted);
@@ -92,7 +92,7 @@
       background-color: var(--puresv-surface);
       color: var(--puresv-text);
       font-size: var(--puresv-text-sm);
-      font-weight: 550;
+      font-weight: var(--puresv-weight-medium);
       text-decoration: none;
       transition:
         border-color var(--puresv-duration) var(--puresv-ease-out),

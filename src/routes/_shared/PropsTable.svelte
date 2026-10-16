@@ -51,7 +51,7 @@
       border-bottom: 1px solid var(--puresv-border);
       background-color: var(--puresv-surface);
       font-size: var(--puresv-text-xs);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--puresv-text-muted);
@@ -63,7 +63,7 @@
       padding: var(--puresv-space-3) var(--puresv-space-4);
       border-bottom: 1px solid var(--puresv-border);
       vertical-align: top;
-      font-weight: 400;
+      font-weight: var(--puresv-weight-normal);
     }
 
     tbody tr:last-child th,
@@ -73,7 +73,7 @@
 
     tbody th code {
       color: var(--puresv-text);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
     }
 
     td code {

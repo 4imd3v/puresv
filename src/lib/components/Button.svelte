@@ -29,8 +29,8 @@
 			border: 1px solid transparent;
 			border-radius: var(--puresv-radius-md);
 			font-family: var(--puresv-font);
-			font-size: var(--puresv-text-sm);
-			font-weight: 550;
+			font-size: var(--puresv-text-md);
+			font-weight: var(--puresv-weight-medium);
 			line-height: 1;
 			letter-spacing: -0.01em;
 			white-space: nowrap;
@@ -63,22 +63,19 @@
 			font-size: var(--puresv-text-md);
 		}
 
-		/* Solid — the primary action. Lifts on hover, presses down on click. */
+		/* Solid — the primary action. A near-black fill, quiet hover, and a
+		   quick press-scale for tactile feedback. No lift, no colored glow. */
 		button[data-variant="solid"] {
-			background-color: var(--puresv-accent);
-			color: var(--puresv-on-accent);
-			box-shadow: var(--puresv-shadow-accent);
+			background-color: var(--puresv-primary);
+			color: var(--puresv-on-primary);
 		}
 
 		button[data-variant="solid"]:hover:not(:disabled) {
-			background-color: var(--puresv-accent-hover);
-			box-shadow: var(--puresv-shadow-accent-hover);
-			transform: translateY(-1px);
+			background-color: var(--puresv-primary-hover);
 		}
 
 		button[data-variant="solid"]:active:not(:disabled) {
-			transform: translateY(0) scale(0.985);
-			box-shadow: var(--puresv-shadow-accent);
+			transform: scale(0.97);
 		}
 
 		/* Soft — tinted, for the common action next to a solid one. */
@@ -92,7 +89,7 @@
 		}
 
 		button[data-variant="soft"]:active:not(:disabled) {
-			transform: scale(0.985);
+			transform: scale(0.97);
 		}
 
 		/* Outline — quiet but present. */
@@ -108,7 +105,7 @@
 		}
 
 		button[data-variant="outline"]:active:not(:disabled) {
-			transform: scale(0.985);
+			transform: scale(0.97);
 		}
 
 		/* Ghost — for toolbars and dense rows. */
@@ -118,11 +115,11 @@
 		}
 
 		button[data-variant="ghost"]:hover:not(:disabled) {
-			background-color: var(--puresv-surface);
+			background-color: var(--puresv-surface-2);
 		}
 
 		button[data-variant="ghost"]:active:not(:disabled) {
-			transform: scale(0.985);
+			transform: scale(0.97);
 		}
 
 		/* Link — text only. Declared after the size rules so it can shed them. */

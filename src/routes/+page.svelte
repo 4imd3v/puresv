@@ -199,7 +199,7 @@
     .hero h1 {
       margin: 0;
       font-size: clamp(2.75rem, 9vw, 4.5rem);
-      font-weight: 700;
+      font-weight: var(--puresv-weight-semibold);
       line-height: 1;
       letter-spacing: -0.04em;
     }
@@ -233,7 +233,7 @@
       border: 1px solid transparent;
       border-radius: var(--puresv-radius-md);
       font-family: var(--puresv-font);
-      font-weight: 550;
+      font-weight: var(--puresv-weight-medium);
       line-height: 1;
       letter-spacing: -0.01em;
       text-decoration: none;
@@ -253,13 +253,12 @@
     }
 
     .btn-solid {
-      background-color: var(--puresv-accent);
-      color: var(--puresv-on-accent);
-      box-shadow: var(--puresv-shadow-accent);
+      background-color: var(--puresv-primary);
+      color: var(--puresv-on-primary);
     }
 
     .btn-solid:hover {
-      background-color: var(--puresv-accent-hover);
+      background-color: var(--puresv-primary-hover);
     }
 
     .btn-outline {
@@ -297,7 +296,7 @@
     .section h2 {
       margin: 0 0 var(--puresv-space-4);
       font-size: var(--puresv-text-xs);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--puresv-text-muted);
@@ -328,13 +327,14 @@
       padding: var(--puresv-space-4);
       border: 1px solid var(--puresv-border);
       border-radius: var(--puresv-radius-lg);
-      background-color: var(--puresv-surface);
+      background-color: var(--puresv-canvas);
+      box-shadow: inset 0 1px 0 var(--puresv-inset-hl);
     }
 
     .features h3 {
       margin: 0 0 var(--puresv-space-2);
       font-size: var(--puresv-text-md);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
       letter-spacing: -0.01em;
     }
 
@@ -362,23 +362,21 @@
       padding: var(--puresv-space-5);
       border: 1px solid var(--puresv-border);
       border-radius: var(--puresv-radius-lg);
-      background-color: var(--puresv-surface);
+      background-color: var(--puresv-canvas);
       color: inherit;
       text-decoration: none;
-      transition:
-        border-color var(--puresv-duration) var(--puresv-ease),
-        transform var(--puresv-duration) var(--puresv-ease);
+      box-shadow: inset 0 1px 0 var(--puresv-inset-hl);
+      transition: border-color var(--puresv-duration) var(--puresv-ease);
     }
 
     .cards a:hover {
       border-color: var(--puresv-border-strong);
-      transform: translateY(-2px);
     }
 
     .cards h3 {
       margin: 0 0 var(--puresv-space-2);
       font-size: var(--puresv-text-lg);
-      font-weight: 650;
+      font-weight: var(--puresv-weight-semibold);
       letter-spacing: -0.02em;
     }
 
@@ -386,14 +384,8 @@
       display: inline-block;
       margin-block-start: var(--puresv-space-4);
       font-size: var(--puresv-text-sm);
-      font-weight: 550;
+      font-weight: var(--puresv-weight-medium);
       color: var(--puresv-accent);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .cards a:hover {
-        transform: none;
-      }
     }
   }
 </style>

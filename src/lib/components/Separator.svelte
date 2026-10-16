@@ -60,7 +60,7 @@
 
 		.separator.labeled .label {
 			font-size: var(--puresv-text-xs);
-			font-weight: 500;
+			font-weight: var(--puresv-weight-medium);
 			color: var(--puresv-text-muted);
 			white-space: nowrap;
 		}

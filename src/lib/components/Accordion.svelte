@@ -56,13 +56,19 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: var(--puresv-space-3);
-			padding: var(--puresv-space-4);
+			padding: var(--puresv-space-3) var(--puresv-space-4);
+			border-radius: var(--puresv-radius-sm);
 			list-style: none;
 			cursor: pointer;
 			user-select: none;
-			font-size: var(--puresv-text-sm);
-			font-weight: 550;
+			font-size: var(--puresv-text-md);
+			font-weight: var(--puresv-weight-medium);
 			color: var(--puresv-text);
+			transition: background-color var(--puresv-duration) var(--puresv-ease-out);
+		}
+
+		.summary:hover {
+			background-color: var(--puresv-surface);
 		}
 
 		.summary::-webkit-details-marker {

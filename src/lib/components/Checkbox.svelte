@@ -96,7 +96,7 @@
 		}
 
 		.label {
-			font-size: var(--puresv-text-sm);
+			font-size: var(--puresv-text-md);
 			color: var(--puresv-text);
 		}
 

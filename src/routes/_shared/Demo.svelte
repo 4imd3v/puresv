@@ -33,7 +33,7 @@
       padding: var(--puresv-space-3) var(--puresv-space-4);
       border-bottom: 1px solid var(--puresv-border);
       font-size: var(--puresv-text-xs);
-      font-weight: 600;
+      font-weight: var(--puresv-weight-semibold);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--puresv-text-muted);

@@ -5,9 +5,14 @@
       ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
     --puresv-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     --puresv-text-xs: 0.75rem;
-    --puresv-text-sm: 0.875rem;
-    --puresv-text-md: 1rem;
-    --puresv-text-lg: 1.125rem;
+    --puresv-text-sm: 0.8125rem;
+    --puresv-text-md: 0.875rem;
+    --puresv-text-lg: 1rem;
+
+    /* A strict weight scale — no stray 550/650 magic numbers. */
+    --puresv-weight-normal: 400;
+    --puresv-weight-medium: 500;
+    --puresv-weight-semibold: 600;
 
     /* Spacing */
     --puresv-space-1: 0.25rem;
@@ -17,87 +22,121 @@
     --puresv-space-5: 1.5rem;
     --puresv-space-6: 2rem;
 
-    /* Radii */
-    --puresv-radius-sm: 0.375rem;
-    --puresv-radius-md: 0.5rem;
-    --puresv-radius-lg: 0.75rem;
+    /* Radii — small and precise. Tight corners read as "considered",
+	   loose corners read as "generic dashboard". */
+    --puresv-radius-sm: 0.25rem;
+    --puresv-radius-md: 0.375rem;
+    --puresv-radius-lg: 0.5rem;
     --puresv-radius-full: 999px;
 
-    /* Palette (light) */
+    /* Palette (light) — a true neutral ramp. No blue cast: the old slate
+	   grays were the single biggest "generated" tell. */
     --puresv-canvas: #ffffff;
-    --puresv-surface: #f7f8fa;
-    --puresv-text: #0f172a;
-    --puresv-text-muted: #5f6e85;
-    --puresv-border: #e3e8ef;
-    --puresv-accent: #4f46e5;
-    --puresv-accent-hover: #4338ca;
-    --puresv-on-accent: #ffffff;
-    --puresv-success: #15803d;
-    --puresv-warning: #b45309;
-    --puresv-danger: #b91c1c;
-    --puresv-ring: #6366f1;
+    --puresv-surface: #fafafa;
+    --puresv-surface-2: #f4f4f5;
+    --puresv-text: #171717;
+    --puresv-text-muted: #6b6b6b;
+    --puresv-border: #eaeaea;
+    --puresv-border-strong: #d4d4d4;
 
-    /* Effects */
-    --puresv-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.08);
-    --puresv-shadow-md: 0 4px 12px rgb(15 23 42 / 0.1);
-    --puresv-scrim: rgb(15 23 42 / 0.5);
-    --puresv-duration: 150ms;
-    --puresv-ease: cubic-bezier(0.4, 0, 0.2, 1);
-    /* Interaction easing — starts fast, so hover and press feedback feels instant. */
+    /* Primary — the action color is near-black, not a saturated hue. This is
+	   the hallmark of a precise, restrained system. Blue is reserved for
+	   links, focus and selected states below, so it stays meaningful. */
+    --puresv-primary: #171717;
+    --puresv-primary-hover: #333333;
+    --puresv-on-primary: #ffffff;
+
+    /* Accent — used sparingly for links, focus rings and selected states. */
+    --puresv-accent: #0070f3;
+    --puresv-accent-hover: #0761d1;
+    --puresv-on-accent: #ffffff;
+    --puresv-ring: #0070f3;
+
+    /* Semantic */
+    --puresv-success: #00a86b;
+    --puresv-warning: #b8860b;
+    --puresv-danger: #e5484d;
+
+    /* Effects — shadows are layered and quiet. A card is defined by its
+	   border, not a fuzzy drop shadow; overlays get a ring + soft spread. */
+    --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+    --puresv-shadow-md: 0 0 0 1px var(--puresv-border), 0 1px 2px rgb(0 0 0 / 0.04);
+    --puresv-shadow-lg:
+      0 0 0 1px var(--puresv-border), 0 8px 24px rgb(0 0 0 / 0.12), 0 2px 6px rgb(0 0 0 / 0.08);
+    /* A hairline highlight along the top edge — the subtle detail that makes
+	   a surface feel lit rather than flat. No-op in light mode. */
+    --puresv-inset-hl: rgb(255 255 255 / 0);
+    --puresv-scrim: rgb(0 0 0 / 0.4);
+
+    /* Motion — snappy. Interactions start fast so feedback feels instant. */
+    --puresv-duration: 140ms;
+    --puresv-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    /* Named alias with the same strong ease-out curve, for entry/exit. */
     --puresv-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
     /* Derived. These reference the palette, so they follow the active theme
-		   without having to be repeated in the dark blocks below. */
-    --puresv-accent-soft: color-mix(in oklab, var(--puresv-accent) 12%, transparent);
-    --puresv-accent-soft-hover: color-mix(in oklab, var(--puresv-accent) 20%, transparent);
-    --puresv-accent-ring: color-mix(in oklab, var(--puresv-accent) 35%, transparent);
-    --puresv-border-strong: color-mix(in oklab, var(--puresv-border) 55%, var(--puresv-text));
-    --puresv-shadow-accent: 0 1px 2px color-mix(in oklab, var(--puresv-accent) 30%, transparent);
-    --puresv-shadow-accent-hover: 0 6px 16px
-      color-mix(in oklab, var(--puresv-accent) 32%, transparent);
-    --puresv-success-soft: color-mix(in oklab, var(--puresv-success) 12%, var(--puresv-surface));
-    --puresv-warning-soft: color-mix(in oklab, var(--puresv-warning) 12%, var(--puresv-surface));
-    --puresv-danger-soft: color-mix(in oklab, var(--puresv-danger) 12%, var(--puresv-surface));
-    --puresv-danger-ring: color-mix(in oklab, var(--puresv-danger) 35%, transparent);
+	   without having to be repeated in the dark blocks below. */
+    --puresv-accent-soft: color-mix(in oklab, var(--puresv-accent) 8%, transparent);
+    --puresv-accent-soft-hover: color-mix(in oklab, var(--puresv-accent) 14%, transparent);
+    --puresv-accent-ring: color-mix(in oklab, var(--puresv-accent) 30%, transparent);
+    --puresv-success-soft: color-mix(in oklab, var(--puresv-success) 10%, var(--puresv-canvas));
+    --puresv-warning-soft: color-mix(in oklab, var(--puresv-warning) 12%, var(--puresv-canvas));
+    --puresv-danger-soft: color-mix(in oklab, var(--puresv-danger) 9%, var(--puresv-canvas));
+    --puresv-danger-ring: color-mix(in oklab, var(--puresv-danger) 30%, transparent);
+    --puresv-success-ring: color-mix(in oklab, var(--puresv-success) 30%, transparent);
   }
 
   /* Palette (dark) — repeated so a forced theme works even when a build step
 	   downlevels the OS-preference branch. Keep the two blocks in sync. */
   :root[data-theme="dark"] {
-    --puresv-canvas: #0b0e14;
-    --puresv-surface: #12171f;
-    --puresv-text: #e6edf7;
-    --puresv-text-muted: #94a3b8;
-    --puresv-border: #28303d;
-    --puresv-accent: #818cf8;
-    --puresv-accent-hover: #a5b4fc;
-    --puresv-on-accent: #1e1b4b;
-    --puresv-success: #4ade80;
-    --puresv-warning: #fbbf24;
-    --puresv-danger: #f87171;
-    --puresv-ring: #a5b4fc;
-    --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
-    --puresv-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+    --puresv-canvas: #0a0a0a;
+    --puresv-surface: #111111;
+    --puresv-surface-2: #1a1a1a;
+    --puresv-text: #ededed;
+    --puresv-text-muted: #a1a1a1;
+    --puresv-border: #262626;
+    --puresv-border-strong: #333333;
+    --puresv-primary: #ededed;
+    --puresv-primary-hover: #cccccc;
+    --puresv-on-primary: #0a0a0a;
+    --puresv-accent: #3291ff;
+    --puresv-accent-hover: #52a8ff;
+    --puresv-ring: #3291ff;
+    --puresv-success: #00d492;
+    --puresv-warning: #ffb224;
+    --puresv-danger: #ff6369;
+    --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --puresv-shadow-md: 0 0 0 1px var(--puresv-border), 0 1px 2px rgb(0 0 0 / 0.4);
+    --puresv-shadow-lg:
+      0 0 0 1px var(--puresv-border), 0 8px 24px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.4);
+    --puresv-inset-hl: rgb(255 255 255 / 0.04);
     --puresv-scrim: rgb(0 0 0 / 0.6);
   }
 
   /* Follow the OS when no theme is forced. */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --puresv-canvas: #0b0e14;
-      --puresv-surface: #12171f;
-      --puresv-text: #e6edf7;
-      --puresv-text-muted: #94a3b8;
-      --puresv-border: #28303d;
-      --puresv-accent: #818cf8;
-      --puresv-accent-hover: #a5b4fc;
-      --puresv-on-accent: #1e1b4b;
-      --puresv-success: #4ade80;
-      --puresv-warning: #fbbf24;
-      --puresv-danger: #f87171;
-      --puresv-ring: #a5b4fc;
-      --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
-      --puresv-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+      --puresv-canvas: #0a0a0a;
+      --puresv-surface: #111111;
+      --puresv-surface-2: #1a1a1a;
+      --puresv-text: #ededed;
+      --puresv-text-muted: #a1a1a1;
+      --puresv-border: #262626;
+      --puresv-border-strong: #333333;
+      --puresv-primary: #ededed;
+      --puresv-primary-hover: #cccccc;
+      --puresv-on-primary: #0a0a0a;
+      --puresv-accent: #3291ff;
+      --puresv-accent-hover: #52a8ff;
+      --puresv-ring: #3291ff;
+      --puresv-success: #00d492;
+      --puresv-warning: #ffb224;
+      --puresv-danger: #ff6369;
+      --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+      --puresv-shadow-md: 0 0 0 1px var(--puresv-border), 0 1px 2px rgb(0 0 0 / 0.4);
+      --puresv-shadow-lg:
+        0 0 0 1px var(--puresv-border), 0 8px 24px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.4);
+      --puresv-inset-hl: rgb(255 255 255 / 0.04);
       --puresv-scrim: rgb(0 0 0 / 0.6);
     }
   }
