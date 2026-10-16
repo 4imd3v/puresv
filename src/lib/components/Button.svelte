@@ -78,10 +78,11 @@
 			transform: scale(0.97);
 		}
 
-		/* Soft — tinted, for the common action next to a solid one. */
+		/* Soft — tinted, for the common action next to a solid one. The text uses
+		   the deeper accent-hover blue so it clears WCAG AA on the tint. */
 		button[data-variant="soft"] {
 			background-color: var(--puresv-accent-soft);
-			color: var(--puresv-accent);
+			color: var(--puresv-accent-hover);
 		}
 
 		button[data-variant="soft"]:hover:not(:disabled) {
