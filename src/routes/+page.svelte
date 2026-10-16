@@ -46,6 +46,21 @@
       name: "Badge",
       summary: "A compact label in five tones for status and metadata.",
     },
+    {
+      href: "/components/input",
+      name: "Input",
+      summary: "A labelled text field with focus, disabled and error states.",
+    },
+    {
+      href: "/components/switch",
+      name: "Switch",
+      summary: "An animated on/off toggle built on a native checkbox.",
+    },
+    {
+      href: "/components/alert",
+      name: "Alert",
+      summary: "An inline status banner in four tones.",
+    },
   ];
 </script>
 
