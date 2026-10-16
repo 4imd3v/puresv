@@ -42,6 +42,8 @@
     --puresv-shadow-md: 0 4px 12px rgb(15 23 42 / 0.1);
     --puresv-duration: 150ms;
     --puresv-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    /* Interaction easing — starts fast, so hover and press feedback feels instant. */
+    --puresv-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
     /* Derived. These reference the palette, so they follow the active theme
 		   without having to be repeated in the dark blocks below. */
@@ -52,6 +54,10 @@
     --puresv-shadow-accent: 0 1px 2px color-mix(in oklab, var(--puresv-accent) 30%, transparent);
     --puresv-shadow-accent-hover: 0 6px 16px
       color-mix(in oklab, var(--puresv-accent) 32%, transparent);
+    --puresv-success-soft: color-mix(in oklab, var(--puresv-success) 12%, var(--puresv-surface));
+    --puresv-warning-soft: color-mix(in oklab, var(--puresv-warning) 12%, var(--puresv-surface));
+    --puresv-danger-soft: color-mix(in oklab, var(--puresv-danger) 12%, var(--puresv-surface));
+    --puresv-danger-ring: color-mix(in oklab, var(--puresv-danger) 35%, transparent);
   }
 
   /* Palette (dark) — repeated so a forced theme works even when a build step

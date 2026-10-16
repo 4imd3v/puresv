@@ -33,4 +33,9 @@ describe("Badge", () => {
     render(Badge, { props: { children: text("paid"), title: "Payment status" } });
     expect(screen.getByText("paid").getAttribute("title")).toBe("Payment status");
   });
+
+  it("renders a status dot when dot is set", () => {
+    const { container } = render(Badge, { props: { dot: true, children: text("live") } });
+    expect(container.querySelector(".dot")).not.toBeNull();
+  });
 });

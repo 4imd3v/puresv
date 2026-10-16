@@ -39,4 +39,11 @@ describe("Card", () => {
     expect(card).not.toBeNull();
     expect(card?.classList.contains("wide")).toBe(true);
   });
+
+  it("renders as a link when href is given", () => {
+    render(Card, { props: { children: text("Body"), href: "/report" } });
+    const link = screen.getByRole("link");
+    expect(link.getAttribute("href")).toBe("/report");
+    expect(link.textContent).toContain("Body");
+  });
 });

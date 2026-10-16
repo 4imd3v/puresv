@@ -39,11 +39,11 @@
 			touch-action: manipulation;
 			-webkit-tap-highlight-color: transparent;
 			transition:
-				background-color var(--puresv-duration) var(--puresv-ease),
-				border-color var(--puresv-duration) var(--puresv-ease),
-				color var(--puresv-duration) var(--puresv-ease),
-				box-shadow var(--puresv-duration) var(--puresv-ease),
-				transform var(--puresv-duration) var(--puresv-ease);
+				background-color var(--puresv-duration) var(--puresv-ease-out),
+				border-color var(--puresv-duration) var(--puresv-ease-out),
+				color var(--puresv-duration) var(--puresv-ease-out),
+				box-shadow var(--puresv-duration) var(--puresv-ease-out),
+				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
 		/* Sizes */
