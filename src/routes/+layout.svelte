@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { Button } from "#lib";
-  import { groups } from "./_shared/nav";
+  import { topLinks } from "./_shared/nav";
 
   let { children } = $props();
 
@@ -28,12 +28,10 @@
     </a>
 
     <nav class="topnav" aria-label="Main">
-      {#each groups as group (group.title)}
-        {#each group.links as link (link.href)}
-          <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
-            {link.label}
-          </a>
-        {/each}
+      {#each topLinks as link (link.href)}
+        <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
+          {link.label}
+        </a>
       {/each}
     </nav>
 

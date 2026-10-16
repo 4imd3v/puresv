@@ -1,26 +1,54 @@
+// Top-bar links (also the mobile nav). Kept short on purpose — the full
+// component list lives in the sidebar and the /components browse page.
+export const topLinks = [
+  { href: "/", label: "Home" },
+  { href: "/components", label: "Components" },
+];
+
+// Sidebar + browse-page groups, by category.
 export const groups = [
   {
-    title: "Guide",
-    links: [{ href: "/", label: "Home" }],
+    title: "Actions",
+    links: [{ href: "/components/button", label: "Button" }],
   },
   {
-    title: "Components",
+    title: "Forms",
     links: [
-      { href: "/components/button", label: "Button" },
-      { href: "/components/card", label: "Card" },
-      { href: "/components/badge", label: "Badge" },
       { href: "/components/input", label: "Input" },
-      { href: "/components/switch", label: "Switch" },
-      { href: "/components/alert", label: "Alert" },
-      { href: "/components/checkbox", label: "Checkbox" },
       { href: "/components/textarea", label: "Textarea" },
-      { href: "/components/spinner", label: "Spinner" },
-      { href: "/components/radio", label: "Radio" },
       { href: "/components/select", label: "Select" },
-      { href: "/components/skeleton", label: "Skeleton" },
-      { href: "/components/avatar", label: "Avatar" },
-      { href: "/components/separator", label: "Separator" },
-      { href: "/components/progress", label: "Progress" },
+      { href: "/components/checkbox", label: "Checkbox" },
+      { href: "/components/radio", label: "Radio" },
+      { href: "/components/switch", label: "Switch" },
     ],
+  },
+  {
+    title: "Feedback",
+    links: [
+      { href: "/components/alert", label: "Alert" },
+      { href: "/components/progress", label: "Progress" },
+      { href: "/components/spinner", label: "Spinner" },
+      { href: "/components/skeleton", label: "Skeleton" },
+    ],
+  },
+  {
+    title: "Display",
+    links: [
+      { href: "/components/avatar", label: "Avatar" },
+      { href: "/components/badge", label: "Badge" },
+      { href: "/components/card", label: "Card" },
+      { href: "/components/separator", label: "Separator" },
+    ],
+  },
+  {
+    title: "Navigation",
+    links: [
+      { href: "/components/tabs", label: "Tabs" },
+      { href: "/components/accordion", label: "Accordion" },
+    ],
+  },
+  {
+    title: "Overlays",
+    links: [{ href: "/components/modal", label: "Modal" }],
   },
 ];
