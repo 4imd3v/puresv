@@ -91,6 +91,21 @@
       name: "Skeleton",
       summary: "A loading placeholder that pulses on the compositor.",
     },
+    {
+      href: "/components/avatar",
+      name: "Avatar",
+      summary: "Image, initials or icon with a broken-image fallback.",
+    },
+    {
+      href: "/components/separator",
+      name: "Separator",
+      summary: "A horizontal or vertical divider, with an optional label.",
+    },
+    {
+      href: "/components/progress",
+      name: "Progress",
+      summary: "A determinate bar that scales on the compositor.",
+    },
   ];
 </script>
 

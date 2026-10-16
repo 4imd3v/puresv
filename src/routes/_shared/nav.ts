@@ -18,6 +18,9 @@ export const groups = [
       { href: "/components/radio", label: "Radio" },
       { href: "/components/select", label: "Select" },
       { href: "/components/skeleton", label: "Skeleton" },
+      { href: "/components/avatar", label: "Avatar" },
+      { href: "/components/separator", label: "Separator" },
+      { href: "/components/progress", label: "Progress" },
     ],
   },
 ];
