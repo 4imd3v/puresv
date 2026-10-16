@@ -15,6 +15,9 @@ export const groups = [
       { href: "/components/checkbox", label: "Checkbox" },
       { href: "/components/textarea", label: "Textarea" },
       { href: "/components/spinner", label: "Spinner" },
+      { href: "/components/radio", label: "Radio" },
+      { href: "/components/select", label: "Select" },
+      { href: "/components/skeleton", label: "Skeleton" },
     ],
   },
 ];

@@ -76,6 +76,21 @@
       name: "Spinner",
       summary: "A loading indicator that rotates on the compositor.",
     },
+    {
+      href: "/components/radio",
+      name: "Radio",
+      summary: "Exclusive selection with bind:group over native radios.",
+    },
+    {
+      href: "/components/select",
+      name: "Select",
+      summary: "A native select restyled to match Input.",
+    },
+    {
+      href: "/components/skeleton",
+      name: "Skeleton",
+      summary: "A loading placeholder that pulses on the compositor.",
+    },
   ];
 </script>
 
