@@ -12,13 +12,13 @@
 		children: Snippet;
 	}
 
-	let { tone = "info", title, role, children, ...rest }: Props = $props();
+	let { tone = "info", title, role, class: className, children, ...rest }: Props = $props();
 
 	// Warnings and errors interrupt, so they announce; the rest are passive status.
 	const defaultRole = tone === "danger" || tone === "warning" ? "alert" : "status";
 </script>
 
-<div class="alert" {...rest} role={role ?? defaultRole} data-tone={tone}>
+<div class={["alert", className].filter(Boolean).join(" ")} {...rest} role={role ?? defaultRole} data-tone={tone}>
 	{#if title}
 		<strong class="title">{title}</strong>
 	{/if}
