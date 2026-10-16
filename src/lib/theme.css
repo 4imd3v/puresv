@@ -40,6 +40,7 @@
     /* Effects */
     --puresv-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.08);
     --puresv-shadow-md: 0 4px 12px rgb(15 23 42 / 0.1);
+    --puresv-scrim: rgb(15 23 42 / 0.5);
     --puresv-duration: 150ms;
     --puresv-ease: cubic-bezier(0.4, 0, 0.2, 1);
     /* Interaction easing — starts fast, so hover and press feedback feels instant. */
@@ -77,6 +78,7 @@
     --puresv-ring: #a5b4fc;
     --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
     --puresv-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+    --puresv-scrim: rgb(0 0 0 / 0.6);
   }
 
   /* Follow the OS when no theme is forced. */
@@ -96,6 +98,7 @@
       --puresv-ring: #a5b4fc;
       --puresv-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
       --puresv-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+      --puresv-scrim: rgb(0 0 0 / 0.6);
     }
   }
 }
