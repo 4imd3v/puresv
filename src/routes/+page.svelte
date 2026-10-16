@@ -61,6 +61,21 @@
       name: "Alert",
       summary: "An inline status banner in four tones.",
     },
+    {
+      href: "/components/checkbox",
+      name: "Checkbox",
+      summary: "A checkbox on a native input with a drawn-in check.",
+    },
+    {
+      href: "/components/textarea",
+      name: "Textarea",
+      summary: "A multi-line field matching Input's states.",
+    },
+    {
+      href: "/components/spinner",
+      name: "Spinner",
+      summary: "A loading indicator that rotates on the compositor.",
+    },
   ];
 </script>
 

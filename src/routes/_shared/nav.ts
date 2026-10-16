@@ -12,6 +12,9 @@ export const groups = [
       { href: "/components/input", label: "Input" },
       { href: "/components/switch", label: "Switch" },
       { href: "/components/alert", label: "Alert" },
+      { href: "/components/checkbox", label: "Checkbox" },
+      { href: "/components/textarea", label: "Textarea" },
+      { href: "/components/spinner", label: "Spinner" },
     ],
   },
 ];
