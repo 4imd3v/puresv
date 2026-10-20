@@ -26,6 +26,14 @@ describe("Tabs", () => {
     expect(screen.getByText("Panel")).toBeTruthy();
   });
 
+  it("links the panel to the active tab", () => {
+    render(Tabs, { props: { tabs, panel } });
+    const [first] = screen.getAllByRole("tab");
+    const tabpanel = screen.getByRole("tabpanel");
+    expect(tabpanel.getAttribute("aria-labelledby")).toBe(first.id);
+    expect(first.getAttribute("aria-controls")).toBe(tabpanel.id);
+  });
+
   it("switches the active tab on click", async () => {
     render(Tabs, { props: { tabs, panel } });
     await fireEvent.click(screen.getByText("Profile"));

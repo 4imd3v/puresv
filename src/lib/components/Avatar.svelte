@@ -69,6 +69,8 @@
 			overflow: hidden;
 			border-radius: var(--puresv-radius-full);
 			background-color: var(--puresv-surface);
+			/* A hairline keeps a light photo from bleeding into a light page. */
+			box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--puresv-text) 10%, transparent);
 			color: var(--puresv-text-muted);
 			font-weight: var(--puresv-weight-medium);
 			user-select: none;
@@ -89,7 +91,7 @@
 		.avatar[data-size="lg"] {
 			width: 3.5rem;
 			height: 3.5rem;
-			font-size: var(--puresv-text-md);
+			font-size: var(--puresv-text-lg);
 		}
 
 		.img {

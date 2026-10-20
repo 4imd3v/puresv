@@ -1,5 +1,8 @@
 @layer puresv {
   :root {
+    /* Native widgets (scrollbars, select popups, checkboxes) follow the theme. */
+    color-scheme: light;
+
     /* Typography */
     --puresv-font:
       ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -21,6 +24,10 @@
     --puresv-space-4: 1rem;
     --puresv-space-5: 1.5rem;
     --puresv-space-6: 2rem;
+
+    /* One height for every form control, matching Button's md size, so an
+	   input and a button placed side by side line up exactly. */
+    --puresv-control-height: 2.5rem;
 
     /* Radii — small and precise. Tight corners read as "considered",
 	   loose corners read as "generic dashboard". */
@@ -67,6 +74,11 @@
 	   a surface feel lit rather than flat. No-op in light mode. */
     --puresv-inset-hl: rgb(255 255 255 / 0);
     --puresv-scrim: rgb(0 0 0 / 0.4);
+    /* A neutral wash for loading placeholders and track fills. Derived from the
+	   text color so it is visible on both themes. */
+    --puresv-fill-muted: color-mix(in oklab, var(--puresv-text) 7%, transparent);
+    /* The switch knob is a physical object, not a themed surface. */
+    --puresv-knob: #ffffff;
 
     /* Motion — snappy. Interactions start fast so feedback feels instant. */
     --puresv-duration: 140ms;
@@ -84,11 +96,27 @@
     --puresv-danger-soft: color-mix(in oklab, var(--puresv-danger) 9%, var(--puresv-canvas));
     --puresv-danger-ring: color-mix(in oklab, var(--puresv-danger) 30%, transparent);
     --puresv-success-ring: color-mix(in oklab, var(--puresv-success) 30%, transparent);
+
+    /* Readable tone text. The raw success/warning/danger hues are tuned for
+	   icons and borders and fail AA as small text on their own soft tints; these
+	   pull each tone 30% toward the body color so badge and error text passes in
+	   both themes. */
+    --puresv-accent-text: color-mix(in oklab, var(--puresv-accent) 70%, var(--puresv-text));
+    --puresv-success-text: color-mix(in oklab, var(--puresv-success) 70%, var(--puresv-text));
+    --puresv-warning-text: color-mix(in oklab, var(--puresv-warning) 70%, var(--puresv-text));
+    --puresv-danger-text: color-mix(in oklab, var(--puresv-danger) 70%, var(--puresv-text));
+
+    /* The one focus ring, shared by every field so error and normal focus can
+	   never drift apart. */
+    --puresv-focus-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-accent-ring);
+    --puresv-focus-shadow-danger:
+      0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-danger-ring);
   }
 
   /* Palette (dark) — repeated so a forced theme works even when a build step
 	   downlevels the OS-preference branch. Keep the two blocks in sync. */
   :root[data-theme="dark"] {
+    color-scheme: dark;
     --puresv-canvas: #0a0a0a;
     --puresv-surface: #111111;
     --puresv-surface-2: #1a1a1a;
@@ -116,6 +144,7 @@
   /* Follow the OS when no theme is forced. */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
+      color-scheme: dark;
       --puresv-canvas: #0a0a0a;
       --puresv-surface: #111111;
       --puresv-surface-2: #1a1a1a;

@@ -1,17 +1,35 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { page } from "$app/state";
   import { Button } from "#lib";
   import { topLinks } from "./_shared/nav";
 
   let { children } = $props();
 
-  const themes = ["system", "light", "dark"] as const;
-  let theme = $state<(typeof themes)[number]>("system");
+  const themes = [
+    { value: "system", label: "System" },
+    { value: "light", label: "Light" },
+    { value: "dark", label: "Dark" },
+  ] as const;
+  type Theme = (typeof themes)[number]["value"];
+
+  let theme = $state<Theme>("system");
+  // app.html already applied the saved theme; wait until the state catches up
+  // so this effect does not strip it for a frame.
+  let ready = $state(false);
+
+  onMount(() => {
+    const stored = localStorage.getItem("puresv-theme");
+    if (stored === "light" || stored === "dark") theme = stored;
+    ready = true;
+  });
 
   $effect(() => {
+    if (!ready) return;
     const root = document.documentElement;
     if (theme === "system") root.removeAttribute("data-theme");
     else root.dataset.theme = theme;
+    localStorage.setItem("puresv-theme", theme);
   });
 
   const isActive = (href: string) =>
@@ -36,14 +54,14 @@
     </nav>
 
     <div class="themes">
-      {#each themes as value (value)}
+      {#each themes as option (option.value)}
         <Button
-          variant={theme === value ? "solid" : "outline"}
+          variant={theme === option.value ? "solid" : "outline"}
           size="sm"
-          onclick={() => (theme = value)}
-          aria-pressed={theme === value}
+          onclick={() => (theme = option.value)}
+          aria-pressed={theme === option.value}
         >
-          {value}
+          {option.label}
         </Button>
       {/each}
     </div>
@@ -150,12 +168,32 @@
     }
 
     .topnav a[aria-current="page"] {
+      background-color: var(--puresv-surface);
       color: var(--puresv-text);
     }
 
+    /* A segmented control rather than three loose buttons — the top bar is
+       chrome, it should not compete with the content. */
     .themes {
       display: flex;
-      gap: var(--puresv-space-2);
+      gap: 2px;
+      padding: 2px;
+      border: 1px solid var(--puresv-border);
+      border-radius: var(--puresv-radius-md);
+      background-color: var(--puresv-surface);
+    }
+
+    .themes :global(.button) {
+      border-radius: var(--puresv-radius-sm);
+    }
+
+    .themes :global(.button[data-variant="outline"]) {
+      border-color: transparent;
+      background-color: transparent;
+    }
+
+    .themes :global(.button[data-variant="outline"]:hover) {
+      background-color: var(--puresv-surface-2);
     }
 
     .footer {

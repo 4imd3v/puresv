@@ -7,12 +7,22 @@
 
   const toneCode = tones.map((t) => `<Badge tone="${t}">${t}</Badge>`).join("\n");
 
+  const dotCode = tones
+    .map((t) => `<Badge tone="${t}" dot>${t}</Badge>`)
+    .join("\n");
+
   const props = [
     {
       name: "tone",
       type: '"neutral" | "accent" | "success" | "warning" | "danger"',
       default: '"neutral"',
       description: "Color of the pill. success, warning and danger are for status.",
+    },
+    {
+      name: "dot",
+      type: "boolean",
+      default: "false",
+      description: "Shows a status dot in the current text color before the label.",
     },
   ];
 </script>
@@ -28,6 +38,14 @@
       {#snippet preview()}
         {#each tones as tone (tone)}
           <Badge {tone}>{tone}</Badge>
+        {/each}
+      {/snippet}
+    </Demo>
+
+    <Demo label="With status dots" code={dotCode}>
+      {#snippet preview()}
+        {#each tones as tone (tone)}
+          <Badge {tone} dot>{tone}</Badge>
         {/each}
       {/snippet}
     </Demo>

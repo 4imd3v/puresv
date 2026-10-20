@@ -92,9 +92,10 @@ body {
 | --------- | ----------------------------------------------------- | --------- |
 | `variant` | `"solid" \| "soft" \| "outline" \| "ghost" \| "link"` | `"solid"` |
 | `size`    | `"sm" \| "md" \| "lg"`                                | `"md"`    |
+| `href`    | `string`                                              | —         |
 
-- **solid** — the primary action. Accent fill, tinted elevation, lifts 1px on
-  hover and presses back down on click.
+- **solid** — the primary action. Near-black ink fill, quiet hover, and a
+  `scale(0.97)` press. No lift, no colored glow.
 - **soft** — tinted accent background, for a secondary action that still needs to
   read as "accent".
 - **outline** — bordered and transparent, for an action next to a solid one.
@@ -102,8 +103,9 @@ body {
 - **link** — text only. Sheds the height and padding from `size` but keeps its
   font size.
 
-Also accepts every native `<button>` attribute (`type`, `disabled`,
-`aria-*`, `onclick`, …) — they are forwarded with `{...rest}`.
+Pass `href` to render an `<a>` with the same styling, for navigation that must
+stay a real link. Also accepts every native `<button>` attribute (`type`,
+`disabled`, `aria-*`, `onclick`, …) — they are forwarded with `{...rest}`.
 
 ### Card
 
@@ -115,6 +117,7 @@ native `<div>` attributes.
 | Prop   | Type                                                          | Default     |
 | ------ | ------------------------------------------------------------- | ----------- |
 | `tone` | `"neutral" \| "accent" \| "success" \| "warning" \| "danger"` | `"neutral"` |
+| `dot`  | `boolean`                                                     | `false`     |
 
 ## Adding a component
 

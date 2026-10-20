@@ -50,6 +50,7 @@
 		}
 
 		.box {
+			box-sizing: border-box;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -73,6 +74,10 @@
 			transition:
 				opacity var(--puresv-duration) var(--puresv-ease-out),
 				transform var(--puresv-duration) var(--puresv-ease-out);
+		}
+
+		.checkbox:hover input:not(:checked):not(:disabled) + .box {
+			border-color: var(--puresv-text-muted);
 		}
 
 		input:checked + .box {

@@ -75,12 +75,19 @@
 		   no harsh left stripe. The icon carries the tone, so the whole block
 		   stays quiet. */
 		.alert {
+			box-sizing: border-box;
 			display: flex;
 			gap: var(--puresv-space-3);
 			padding: var(--puresv-space-3) var(--puresv-space-4);
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-md);
 			background-color: var(--puresv-accent-soft);
+		}
+
+		/* Every tone tints its own border — info included, so it is not the odd
+		   one out with a plain neutral hairline. */
+		.alert[data-tone="info"] {
+			border-color: color-mix(in oklab, var(--puresv-accent) 24%, var(--puresv-border));
 		}
 
 		.icon {

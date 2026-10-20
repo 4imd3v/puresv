@@ -44,7 +44,7 @@
 			overflow: hidden;
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-lg);
-			background-color: var(--puresv-surface);
+			background-color: var(--puresv-canvas);
 		}
 
 		.item + .item {
@@ -52,6 +52,7 @@
 		}
 
 		.summary {
+			box-sizing: border-box;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -68,7 +69,7 @@
 		}
 
 		.summary:hover {
-			background-color: var(--puresv-surface);
+			background-color: var(--puresv-surface-2);
 		}
 
 		.summary::-webkit-details-marker {

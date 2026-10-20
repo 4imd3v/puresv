@@ -10,7 +10,14 @@
 		children: Snippet;
 	}
 
-	let { label, error, children, ...rest }: Props = $props();
+	let { label, error, children, "aria-describedby": describedBy, ...rest }: Props = $props();
+
+	// Give the message an id so it is announced with the field, not just shown.
+	const uid = $props.id();
+	const errorId = `${uid}-error`;
+	const describedByValue = $derived(
+		[describedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined,
+	);
 </script>
 
 <div class="field" data-error={error || undefined}>
@@ -19,7 +26,7 @@
 			<span class="label">{label}</span>
 		{/if}
 		<span class="control">
-			<select {...rest} aria-invalid={error ? true : undefined}>
+			<select {...rest} aria-invalid={error ? true : undefined} aria-describedby={describedByValue}>
 				{@render children()}
 			</select>
 			<svg class="chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -34,7 +41,7 @@
 		</span>
 	</label>
 	{#if error}
-		<span class="error">{error}</span>
+		<span class="error" id={errorId}>{error}</span>
 	{/if}
 </div>
 
@@ -67,10 +74,11 @@
 		}
 
 		select {
+			box-sizing: border-box;
 			appearance: none;
 			min-width: 0;
 			width: 100%;
-			height: 2.25rem;
+			height: var(--puresv-control-height);
 			padding-inline: var(--puresv-space-3);
 			padding-inline-end: var(--puresv-space-6);
 			border: 1px solid var(--puresv-border);
@@ -103,7 +111,7 @@
 		select:focus-visible {
 			outline: none;
 			border-color: var(--puresv-accent);
-			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-accent-ring);
+			box-shadow: var(--puresv-focus-shadow);
 		}
 
 		select:disabled {
@@ -118,12 +126,12 @@
 
 		.field[data-error] select:focus-visible {
 			border-color: var(--puresv-danger);
-			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-danger-ring);
+			box-shadow: var(--puresv-focus-shadow-danger);
 		}
 
 		.error {
 			font-size: var(--puresv-text-sm);
-			color: var(--puresv-danger);
+			color: var(--puresv-danger-text);
 		}
 	}
 </style>

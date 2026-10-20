@@ -50,6 +50,10 @@
 			transition: background-color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
+		.switch:hover input:not(:checked):not(:disabled) + .track {
+			background-color: color-mix(in oklab, var(--puresv-border-strong) 78%, var(--puresv-text));
+		}
+
 		.knob {
 			position: absolute;
 			top: 2px;
@@ -57,7 +61,7 @@
 			width: 1.125rem;
 			height: 1.125rem;
 			border-radius: var(--puresv-radius-full);
-			background-color: #ffffff;
+			background-color: var(--puresv-knob);
 			box-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 0 0 0.5px rgb(0 0 0 / 0.04);
 			transition: transform var(--puresv-duration) var(--puresv-ease-out);
 		}
@@ -81,7 +85,7 @@
 		}
 
 		.label {
-			font-size: var(--puresv-text-sm);
+			font-size: var(--puresv-text-md);
 			color: var(--puresv-text);
 		}
 

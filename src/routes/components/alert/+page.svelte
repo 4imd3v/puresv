@@ -11,7 +11,8 @@
       name: "tone",
       type: '"info" | "success" | "warning" | "danger"',
       default: '"info"',
-      description: "Colour and left accent. info is neutral; the rest map to status.",
+      description:
+        "Tone of the banner. Warnings and errors announce with role=alert; info and success use role=status.",
     },
     {
       name: "title",

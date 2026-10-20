@@ -34,7 +34,7 @@
 			height: 0.5rem;
 			overflow: hidden;
 			border-radius: var(--puresv-radius-full);
-			background-color: var(--puresv-surface);
+			background-color: var(--puresv-fill-muted);
 		}
 
 		/* Rectangular fill scaled on the compositor; the track's radius clips it to a pill. */

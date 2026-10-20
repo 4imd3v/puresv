@@ -17,6 +17,9 @@
 
 	let { tabs, active = $bindable(tabs[0]?.id ?? ""), panel }: Props = $props();
 
+	// Prefix the ids so two Tabs on one page do not collide.
+	const uid = $props.id();
+
 	let tablist = $state<HTMLDivElement | null>(null);
 
 	async function onKeydown(event: KeyboardEvent) {
@@ -40,10 +43,10 @@
 		<button
 			type="button"
 			role="tab"
-			id={"tab-" + tab.id}
+			id={`${uid}-tab-${tab.id}`}
 			class="tab"
 			aria-selected={active === tab.id}
-			aria-controls={"panel-" + tab.id}
+			aria-controls={`${uid}-panel-${tab.id}`}
 			tabindex={active === tab.id ? 0 : -1}
 			onclick={() => (active = tab.id)}
 		>
@@ -52,7 +55,13 @@
 	{/each}
 </div>
 
-<div class="panel" role="tabpanel" id={"panel-" + active} aria-labelledby={"tab-" + active} tabindex={0}>
+<div
+	class="panel"
+	role="tabpanel"
+	id={`${uid}-panel-${active}`}
+	aria-labelledby={`${uid}-tab-${active}`}
+	tabindex={0}
+>
 	{@render panel(active)}
 </div>
 
@@ -87,7 +96,9 @@
 			color: var(--puresv-text);
 		}
 
-		.tab[aria-selected="true"]::after {
+		/* The indicator grows out of the centre instead of popping in — cheap to
+		   animate (transform only) and it makes switching tabs feel deliberate. */
+		.tab::after {
 			content: "";
 			position: absolute;
 			right: var(--puresv-space-2);
@@ -96,6 +107,12 @@
 			height: 2px;
 			border-radius: var(--puresv-radius-full);
 			background-color: var(--puresv-text);
+			transform: scaleX(0);
+			transition: transform var(--puresv-duration) var(--puresv-ease-out);
+		}
+
+		.tab[aria-selected="true"]::after {
+			transform: scaleX(1);
 		}
 
 		.tab:focus-visible {
@@ -114,7 +131,8 @@
 		}
 
 		@media (prefers-reduced-motion: reduce) {
-			.tab {
+			.tab,
+			.tab::after {
 				transition-duration: 0.01ms;
 			}
 		}

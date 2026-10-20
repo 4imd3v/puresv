@@ -31,6 +31,14 @@ describe("Button", () => {
     expect(button.disabled).toBe(true);
   });
 
+  it("renders a link when href is given", () => {
+    render(Button, { props: { href: "/components", children: text("Browse") } });
+    const link = screen.getByRole("link");
+    expect(link.getAttribute("href")).toBe("/components");
+    expect(link.dataset.variant).toBe("solid");
+    expect(screen.queryByRole("button")).toBeNull();
+  });
+
   // Guards against a typo in the Variant union silently rendering unstyled.
   it.each(["solid", "soft", "outline", "ghost", "link"] as const)(
     "applies the %s variant",

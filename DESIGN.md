@@ -63,7 +63,7 @@ components:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
     rounded: "{rounded.md}"
-    height: 36px
+    height: 40px
   button-primary-hover:
     backgroundColor: "{colors.primary-hover}"
     textColor: "{colors.on-primary}"
@@ -84,7 +84,7 @@ components:
     backgroundColor: "{colors.background}"
     textColor: "{colors.text}"
     rounded: "{rounded.md}"
-    height: 36px
+    height: 40px
   card:
     backgroundColor: "{colors.background}"
     textColor: "{colors.text}"
@@ -132,8 +132,11 @@ shades (soft tints, rings) are `color-mix()` off these in `theme.css`.
 - **Border (`#eaeaea`) / Border-strong (`#d4d4d4`):** Hairlines. The primary tool
   for defining surfaces and affordance.
 - **Semantic — Success `#00a86b`, Warning `#b8860b`, Danger `#e5484d`:** Used for
-  icons, dots, borders and status. See the note in _Do's and Don'ts_ about using
-  them as small text on light tints.
+  icons, dots, borders and status. They are tuned for graphics, so **small text
+  uses the darker `-text` variants** (`--puresv-accent-text`,
+  `-success-text`, `-warning-text`, `-danger-text`): each is the raw hue mixed
+  70% toward the body text color, which clears WCAG AA on its own soft tint in
+  both themes. Badge labels and field error messages must use these.
 
 ## Typography
 
@@ -154,8 +157,10 @@ runtime deps). Personality comes from weight and tracking, not from the typeface
 
 Density is _tight and even_. Spacing follows a 4px-based scale
 (`--puresv-space-1…6` = 4 / 8 / 12 / 16 / 24 / 32px). Prefer consistent rhythm
-over generous whitespace — this is an application UI, not a landing page. Form
-controls are a uniform `2.25rem` tall; buttons `2 / 2.5 / 3rem` by size.
+over generous whitespace — this is an application UI, not a landing page. Every
+form control is `--puresv-control-height` (`2.5rem`), which is exactly Button's
+`md` height, so a field and a button placed side by side line up flush. Buttons
+are `2 / 2.5 / 3rem` by size.
 
 ## Elevation & Depth
 
@@ -185,7 +190,8 @@ Component-level rules, expressed as token references above and implemented in
 - **Button** — 5 variants. `solid` uses `primary`/`on-primary` (near-black), with
   a quiet `primary-hover` and a `scale(0.97)` press. `soft` is accent-tinted.
   `outline` and `ghost` are neutral. `link` is accent text only. **No lift on
-  hover, no colored glow.**
+  hover, no colored glow.** Pass `href` to render an `<a>` with the same styling
+  (navigation must stay a real link, and it keeps the focus ring).
 - **Card** — border + inset hairline, canvas background, no drop shadow.
 - **Badge** — soft tint background + a hairline border that tracks the text color
   (`color-mix(currentColor …)`), not a loud solid fill.
@@ -193,8 +199,10 @@ Component-level rules, expressed as token references above and implemented in
   border. **No left accent stripe.**
 - **Switch** — off-state track is a _readable_ `border-strong` gray, not an
   invisible hairline.
-- **Input / Select / Textarea** — crisp **double-ring** focus
-  (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft glow.
+- **Input / Select / Textarea** — crisp **double-ring** focus from the shared
+  `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
+  glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is
+  linked with `aria-describedby`.
 - **Focus everywhere** — a crisp ring, never `outline: none` without a
   replacement. Motion uses a strong ease-out
   (`cubic-bezier(0.23, 1, 0.32, 1)`) at `140ms`, and respects
@@ -221,6 +229,6 @@ Component-level rules, expressed as token references above and implemented in
 - **Don't** add a blurred drop shadow to in-flow cards.
 - **Don't** use loud solid-fill badges or a left-stripe alert.
 - **Don't** use stray font-weights (550/650/700) or loose radii (12px+).
-- **Don't** use the semantic colors (success/warning/danger) as small body text
-  on light tints without checking contrast — they are tuned for icons, dots, and
-  borders; badge text should stay large enough or use a darkened variant.
+- **Don't** use the raw semantic colors (success/warning/danger) as small text on
+  their soft tints — they fail AA there (they are tuned for icons, dots, and
+  borders). Use the `-text` variants instead.

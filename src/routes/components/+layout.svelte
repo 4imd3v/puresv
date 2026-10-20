@@ -89,7 +89,7 @@
 
     .nav-group a[aria-current="page"] {
       background-color: var(--puresv-accent-soft);
-      color: var(--puresv-accent);
+      color: var(--puresv-accent-text);
       font-weight: var(--puresv-weight-medium);
     }
 

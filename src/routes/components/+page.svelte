@@ -103,7 +103,7 @@
     .chip:hover {
       border-color: var(--puresv-accent);
       background-color: var(--puresv-accent-soft);
-      color: var(--puresv-accent);
+      color: var(--puresv-accent-text);
     }
   }
 </style>

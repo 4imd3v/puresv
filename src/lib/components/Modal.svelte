@@ -10,7 +10,19 @@
 		children: Snippet;
 	}
 
-	let { open = $bindable(false), title, class: className, children, ...rest }: Props = $props();
+	let {
+		open = $bindable(false),
+		title,
+		class: className,
+		"aria-labelledby": labelledBy,
+		children,
+		...rest
+	}: Props = $props();
+
+	// Link the heading to the dialog so screen readers announce it on open.
+	const uid = $props.id();
+	const titleId = `${uid}-title`;
+	const labelledByValue = $derived(title ? titleId : labelledBy);
 
 	let dialog = $state<HTMLDialogElement | null>(null);
 
@@ -36,12 +48,13 @@
 	bind:this={dialog}
 	class={["modal", className].filter(Boolean).join(" ")}
 	{...rest}
+	aria-labelledby={labelledByValue}
 	onclose={onClose}
 	onclick={onBackdropClick}
 >
 	<div class="panel">
 		<header class="head">
-			{#if title}<h2 class="title">{title}</h2>{/if}
+			{#if title}<h2 class="title" id={titleId}>{title}</h2>{/if}
 			<button class="close" type="button" aria-label="Close" onclick={() => (open = false)}>
 				<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
 					<path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
@@ -98,9 +111,13 @@
 			}
 		}
 
+		/* The dialog caps the height, so the panel inherits it and the body
+		   scrolls instead of overflowing the viewport. */
 		.panel {
 			display: flex;
 			flex-direction: column;
+			max-height: inherit;
+			overflow: hidden;
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-lg);
 			background-color: var(--puresv-canvas);
@@ -108,6 +125,7 @@
 		}
 
 		.head {
+			flex-shrink: 0;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -142,7 +160,7 @@
 		}
 
 		.close:hover {
-			background-color: var(--puresv-surface);
+			background-color: var(--puresv-surface-2);
 			color: var(--puresv-text);
 		}
 
@@ -157,7 +175,9 @@
 		}
 
 		.body {
+			min-height: 0;
 			padding: var(--puresv-space-4);
+			overflow-y: auto;
 			font-size: var(--puresv-text-sm);
 			line-height: 1.6;
 		}

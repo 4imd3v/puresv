@@ -15,6 +15,10 @@ describe("Modal", () => {
     expect(screen.getByText("Confirm")).toBeTruthy();
     expect(screen.getByText("Delete this?")).toBeTruthy();
     expect(container.querySelector("button.close")).toBeTruthy();
+    // The heading names the dialog for assistive tech.
+    expect(container.querySelector("dialog")?.getAttribute("aria-labelledby")).toBe(
+      screen.getByRole("heading", { name: "Confirm" }).id,
+    );
   });
 
   it("renders without a title", () => {

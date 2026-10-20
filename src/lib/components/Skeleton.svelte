@@ -25,7 +25,7 @@
 	@layer puresv {
 		.skeleton {
 			border-radius: var(--puresv-radius-sm);
-			background-color: var(--puresv-surface);
+			background-color: var(--puresv-fill-muted);
 			animation: puresv-pulse 1.4s var(--puresv-ease) infinite;
 		}
 

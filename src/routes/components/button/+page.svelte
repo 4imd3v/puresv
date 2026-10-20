@@ -9,6 +9,7 @@
   const variantCode = variants.map((v) => `<Button variant="${v}">${v}</Button>`).join("\n");
   const sizeCode = sizes.map((s) => `<Button size="${s}">${s}</Button>`).join("\n");
   const stateCode = `<Button disabled>Disabled</Button>\n<Button type="submit">Submit</Button>`;
+  const linkCode = `<Button href="/components/card" size="lg">Browse components</Button>`;
 
   const props = [
     {
@@ -23,6 +24,12 @@
       type: '"sm" | "md" | "lg"',
       default: '"md"',
       description: "Height and horizontal padding: 2rem, 2.5rem, 3rem.",
+    },
+    {
+      name: "href",
+      type: "string",
+      default: "—",
+      description: "Renders an <a> with the same styling instead of a <button>.",
     },
   ];
 </script>
@@ -50,6 +57,12 @@
       {/snippet}
     </Demo>
 
+    <Demo label="As a link" code={linkCode}>
+      {#snippet preview()}
+        <Button href="/components/card" size="lg">Browse components</Button>
+      {/snippet}
+    </Demo>
+
     <Demo label="States" code={stateCode}>
       {#snippet preview()}
         <Button disabled>Disabled</Button>
@@ -61,7 +74,7 @@
 
   {#snippet note()}
     Any other attribute — <code>type</code>, <code>disabled</code>,
-    <code>aria-*</code>, <code>onclick</code> — is spread onto the
-    <code>&lt;button&gt;</code> element.
+    <code>aria-*</code>, <code>onclick</code> — is spread onto the rendered
+    element. Use <code>href</code> for navigation so the result is a real link.
   {/snippet}
 </DocPage>

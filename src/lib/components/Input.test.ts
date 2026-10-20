@@ -25,6 +25,8 @@ describe("Input", () => {
     const input = screen.getByLabelText("Email") as HTMLInputElement;
     expect(input.getAttribute("aria-invalid")).toBe("true");
     expect(screen.getByText("Required")).toBeTruthy();
+    // The message must be announced with the field, not just shown.
+    expect(input.getAttribute("aria-describedby")).toBe(screen.getByText("Required").id);
   });
 
   it("is not marked invalid by default", () => {

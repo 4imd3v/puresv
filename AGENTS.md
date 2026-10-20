@@ -44,7 +44,9 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the docs site.
   CSS custom properties.
 - **Design tokens only.** Never hardcode a color, radius, or spacing value in a
   component. Use `var(--puresv-*)` from `src/lib/theme.css`. Need a new token?
-  Add it to `theme.css` and use it.
+  Add it to `theme.css` and use it. Small semantic text uses the `-text`
+  variants (`--puresv-danger-text` …), never the raw hue. Form controls use
+  `--puresv-control-height`.
 - **Every component imports `../theme.css` in its own `<script>`.** Do NOT move
   that import into `src/lib/index.ts` — Vite's `sideEffects` globs do not match
   `.css` files, so a package-level side-effect import gets tree-shaken away and
@@ -96,6 +98,9 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the docs site.
 - **Homepage grids use explicit `repeat(N)`**, never `auto-fit`. With a fixed
   item count `auto-fit` fits whatever the width allows and strands a lone card
   on a second row.
+- **`$props.id()` must be a direct `const uid = $props.id()` initializer.**
+  Templating it inline (building the id with a template literal around
+  `$props.id()`) fails the compiler with `props_id_invalid_placement`.
 
 ## Validate with
 

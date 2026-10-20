@@ -50,24 +50,26 @@
 			color: var(--puresv-text-muted);
 		}
 
+		/* Tone text uses the readable -text variants: the raw semantic hues fail
+		   AA at badge size on their own soft tint. */
 		span[data-tone="accent"] {
 			background-color: var(--puresv-accent-soft);
-			color: var(--puresv-accent);
+			color: var(--puresv-accent-text);
 		}
 
 		span[data-tone="success"] {
 			background-color: var(--puresv-success-soft);
-			color: var(--puresv-success);
+			color: var(--puresv-success-text);
 		}
 
 		span[data-tone="warning"] {
 			background-color: var(--puresv-warning-soft);
-			color: var(--puresv-warning);
+			color: var(--puresv-warning-text);
 		}
 
 		span[data-tone="danger"] {
 			background-color: var(--puresv-danger-soft);
-			color: var(--puresv-danger);
+			color: var(--puresv-danger-text);
 		}
 	}
 </style>

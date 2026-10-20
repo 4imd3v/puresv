@@ -8,7 +8,14 @@
 		error?: string;
 	}
 
-	let { label, error, ...rest }: Props = $props();
+	let { label, error, "aria-describedby": describedBy, ...rest }: Props = $props();
+
+	// Give the message an id so it is announced with the field, not just shown.
+	const uid = $props.id();
+	const errorId = `${uid}-error`;
+	const describedByValue = $derived(
+		[describedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined,
+	);
 </script>
 
 <div class="field" data-error={error || undefined}>
@@ -16,10 +23,11 @@
 		{#if label}
 			<span class="label">{label}</span>
 		{/if}
-		<textarea {...rest} aria-invalid={error ? true : undefined}></textarea>
+		<textarea {...rest} aria-invalid={error ? true : undefined} aria-describedby={describedByValue}
+		></textarea>
 	</label>
 	{#if error}
-		<span class="error">{error}</span>
+		<span class="error" id={errorId}>{error}</span>
 	{/if}
 </div>
 
@@ -46,6 +54,7 @@
 		}
 
 		textarea {
+			box-sizing: border-box;
 			min-width: 0;
 			min-height: 5rem;
 			padding: var(--puresv-space-3);
@@ -73,7 +82,7 @@
 		textarea:focus-visible {
 			outline: none;
 			border-color: var(--puresv-accent);
-			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-accent-ring);
+			box-shadow: var(--puresv-focus-shadow);
 		}
 
 		textarea:disabled {
@@ -88,12 +97,12 @@
 
 		.field[data-error] textarea:focus-visible {
 			border-color: var(--puresv-danger);
-			box-shadow: 0 0 0 2px var(--puresv-canvas), 0 0 0 4px var(--puresv-danger-ring);
+			box-shadow: var(--puresv-focus-shadow-danger);
 		}
 
 		.error {
 			font-size: var(--puresv-text-sm);
-			color: var(--puresv-danger);
+			color: var(--puresv-danger-text);
 		}
 	}
 </style>

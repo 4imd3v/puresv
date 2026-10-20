@@ -138,13 +138,13 @@
   </p>
 
   <div class="cta">
-    <a class="btn btn-lg btn-solid" href="/components/button">Get started</a>
-    <a class="btn btn-lg btn-outline" href="/components/card">Browse components</a>
+    <Button href="/components/button" size="lg">Get started</Button>
+    <Button href="/components/card" size="lg" variant="outline">Browse components</Button>
   </div>
 
   <div class="install">
     <code>{install}</code>
-    <Button variant="ghost" size="sm" onclick={copy}>
+    <Button variant="ghost" size="sm" style="min-width: 4.75rem" onclick={copy}>
       {copied ? "Copied" : "Copy"}
     </Button>
   </div>
@@ -222,53 +222,6 @@
       gap: var(--puresv-space-3);
       justify-content: center;
       margin-block-start: var(--puresv-space-2);
-    }
-
-    /* Mirror the library's Button so the CTAs stay semantic links. */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--puresv-space-2);
-      border: 1px solid transparent;
-      border-radius: var(--puresv-radius-md);
-      font-family: var(--puresv-font);
-      font-weight: var(--puresv-weight-medium);
-      line-height: 1;
-      letter-spacing: -0.01em;
-      text-decoration: none;
-      white-space: nowrap;
-      cursor: pointer;
-      transition:
-        background-color var(--puresv-duration) var(--puresv-ease),
-        border-color var(--puresv-duration) var(--puresv-ease),
-        color var(--puresv-duration) var(--puresv-ease);
-    }
-
-
-    .btn-lg {
-      height: 3rem;
-      padding-inline: var(--puresv-space-5);
-      font-size: var(--puresv-text-md);
-    }
-
-    .btn-solid {
-      background-color: var(--puresv-primary);
-      color: var(--puresv-on-primary);
-    }
-
-    .btn-solid:hover {
-      background-color: var(--puresv-primary-hover);
-    }
-
-    .btn-outline {
-      border-color: var(--puresv-border);
-      color: var(--puresv-text);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--puresv-border-strong);
-      background-color: var(--puresv-surface);
     }
 
     .install {

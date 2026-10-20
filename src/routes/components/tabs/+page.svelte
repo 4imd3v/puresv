@@ -25,6 +25,12 @@
       default: "first tab's id",
       description: "The selected tab id. Bind it with bind:active.",
     },
+    {
+      name: "panel",
+      type: "Snippet<[string]>",
+      default: "—",
+      description: "Receives the active tab id and renders that panel.",
+    },
   ];
 </script>
 
