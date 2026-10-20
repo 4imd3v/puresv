@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Badge, Button } from "#lib";
+  import { Alert, AvatarGroup, Badge, Button, Rating, SegmentedControl } from "#lib";
 
   let copied = $state(false);
 
@@ -30,173 +30,20 @@
     },
   ];
 
-  const components = [
-    {
-      href: "/components/button",
-      name: "Button",
-      summary: "Five variants and three sizes, with hover, press and focus states.",
-    },
-    {
-      href: "/components/card",
-      name: "Card",
-      summary: "A surface with optional header and footer snippets around the body.",
-    },
-    {
-      href: "/components/badge",
-      name: "Badge",
-      summary: "A compact label in five tones for status and metadata.",
-    },
-    {
-      href: "/components/input",
-      name: "Input",
-      summary: "A labelled text field with focus, disabled and error states.",
-    },
-    {
-      href: "/components/switch",
-      name: "Switch",
-      summary: "An animated on/off toggle built on a native checkbox.",
-    },
-    {
-      href: "/components/slider",
-      name: "Slider",
-      summary: "A native range input with a painted fill.",
-    },
-    {
-      href: "/components/alert",
-      name: "Alert",
-      summary: "An inline status banner in four tones.",
-    },
-    {
-      href: "/components/checkbox",
-      name: "Checkbox",
-      summary: "A checkbox on a native input with a drawn-in check.",
-    },
-    {
-      href: "/components/textarea",
-      name: "Textarea",
-      summary: "A multi-line field matching Input's states.",
-    },
-    {
-      href: "/components/spinner",
-      name: "Spinner",
-      summary: "A loading indicator that rotates on the compositor.",
-    },
-    {
-      href: "/components/radio",
-      name: "Radio",
-      summary: "Exclusive selection with bind:group over native radios.",
-    },
-    {
-      href: "/components/select",
-      name: "Select",
-      summary: "A native select restyled to match Input.",
-    },
-    {
-      href: "/components/skeleton",
-      name: "Skeleton",
-      summary: "A loading placeholder that pulses on the compositor.",
-    },
-    {
-      href: "/components/avatar",
-      name: "Avatar",
-      summary: "Image, initials or icon with a broken-image fallback.",
-    },
-    {
-      href: "/components/separator",
-      name: "Separator",
-      summary: "A horizontal or vertical divider, with an optional label.",
-    },
-    {
-      href: "/components/progress",
-      name: "Progress",
-      summary: "A determinate bar that scales on the compositor.",
-    },
-    {
-      href: "/components/modal",
-      name: "Modal",
-      summary: "A native dialog with focus trap, Escape and backdrop close.",
-    },
-    {
-      href: "/components/tabs",
-      name: "Tabs",
-      summary: "An accessible tab list with arrow-key navigation.",
-    },
-    {
-      href: "/components/accordion",
-      name: "Accordion",
-      summary: "A disclosure list built on the native details element.",
-    },
-    {
-      href: "/components/breadcrumb",
-      name: "Breadcrumb",
-      summary: "A trail of links ending in the current page.",
-    },
-    {
-      href: "/components/pagination",
-      name: "Pagination",
-      summary: "Page controls with a collapsed window on long ranges.",
-    },
-    {
-      href: "/components/table",
-      name: "Table",
-      summary: "A scrollable native table with styled header and rows.",
-    },
-    {
-      href: "/components/tooltip",
-      name: "Tooltip",
-      summary: "A short label on hover or keyboard focus.",
-    },
-    {
-      href: "/components/toast",
-      name: "Toast",
-      summary: "Non-blocking feedback from a global queue.",
-    },
-    {
-      href: "/components/dropdown",
-      name: "Dropdown",
-      summary: "A keyboard-navigable menu anchored to a trigger.",
-    },
-    {
-      href: "/components/segmented-control",
-      name: "SegmentedControl",
-      summary: "A single-choice control with an ink-filled selection.",
-    },
-    {
-      href: "/components/kbd",
-      name: "Kbd",
-      summary: "A keycap for keyboard shortcuts.",
-    },
-    {
-      href: "/components/avatar-group",
-      name: "AvatarGroup",
-      summary: "A stacked team with a +N overflow chip.",
-    },
-    {
-      href: "/components/empty-state",
-      name: "EmptyState",
-      summary: "A title, explanation and one action for empty surfaces.",
-    },
-    {
-      href: "/components/rating",
-      name: "Rating",
-      summary: "A star rating built on native radios.",
-    },
-    {
-      href: "/components/popover",
-      name: "Popover",
-      summary: "A floating panel that closes on Escape or an outside click.",
-    },
-    {
-      href: "/components/description-list",
-      name: "DescriptionList",
-      summary: "Term and value rows for metadata.",
-    },
-    {
-      href: "/components/stat",
-      name: "Stat",
-      summary: "A metric with a tabular value and a delta.",
-    },
+
+  const segments = [
+    { value: "day", label: "Day" },
+    { value: "week", label: "Week" },
+    { value: "month", label: "Month" },
   ];
+
+  const team = [
+    "Ada Lovelace",
+    "Grace Hopper",
+    "Alan Turing",
+    "Edsger Dijkstra",
+    "Barbara Liskov",
+  ].map((name) => ({ name }));
 </script>
 
 <svelte:head>
@@ -238,17 +85,89 @@
 </section>
 
 <section class="section">
-  <h2>Components</h2>
-  <ul class="cards">
-    {#each components as component (component.href)}
-      <li>
-        <a href={component.href}>
-          <h3>{component.name}</h3>
-          <p>{component.summary}</p>
-          <span class="more">Read the docs →</span>
-        </a>
-      </li>
-    {/each}
+  <div class="section-head">
+    <h2>Components</h2>
+    <a class="all" href="/components">Browse all components →</a>
+  </div>
+
+  <ul class="showcase">
+    <li>
+      <a class="showcase-card" href="/components/button">
+        <div class="preview" inert aria-hidden="true">
+          <Button size="sm">Save</Button>
+          <Button variant="outline" size="sm">Cancel</Button>
+          <Button variant="ghost" size="sm">Later</Button>
+        </div>
+        <div class="meta">
+          <h3>Button</h3>
+          <p>Five variants on the same ink action color.</p>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="showcase-card" href="/components/badge">
+        <div class="preview" inert aria-hidden="true">
+          <Badge tone="neutral" dot>draft</Badge>
+          <Badge tone="success" dot>active</Badge>
+          <Badge tone="accent">beta</Badge>
+        </div>
+        <div class="meta">
+          <h3>Badge</h3>
+          <p>Tone-tinted labels for status and metadata.</p>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="showcase-card" href="/components/alert">
+        <div class="preview" inert aria-hidden="true">
+          <Alert tone="success" title="Changes saved">
+            Your changes are live.
+          </Alert>
+        </div>
+        <div class="meta">
+          <h3>Alert</h3>
+          <p>Inline feedback with a tone icon, no stripe.</p>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="showcase-card" href="/components/segmented-control">
+        <div class="preview" inert aria-hidden="true">
+          <SegmentedControl options={segments} value="week" aria-label="Range" />
+        </div>
+        <div class="meta">
+          <h3>SegmentedControl</h3>
+          <p>One choice, ink-filled, keyboard ready.</p>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="showcase-card" href="/components/rating">
+        <div class="preview" inert aria-hidden="true">
+          <Rating label="Rating" value={4} readonly />
+        </div>
+        <div class="meta">
+          <h3>Rating</h3>
+          <p>Stars on native radios, hover to preview.</p>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="showcase-card" href="/components/avatar-group">
+        <div class="preview" inert aria-hidden="true">
+          <AvatarGroup items={team} max={4} />
+        </div>
+        <div class="meta">
+          <h3>AvatarGroup</h3>
+          <p>A team stack with a +N overflow chip.</p>
+        </div>
+      </a>
+    </li>
   </ul>
 </section>
 </main>
@@ -329,8 +248,7 @@
       color: var(--puresv-text-muted);
     }
 
-    .features,
-    .cards {
+    .features {
       display: grid;
       gap: var(--puresv-space-4);
       margin: 0;
@@ -365,54 +283,118 @@
       letter-spacing: -0.01em;
     }
 
-    .features p,
-    .cards p {
+    .features p {
       margin: 0;
       font-size: var(--puresv-text-sm);
       line-height: 1.6;
       color: var(--puresv-text-muted);
     }
 
-    .cards {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--puresv-space-4);
+      margin-block-end: var(--puresv-space-4);
     }
 
-    @media (width < 40rem) {
-      .cards {
+    .section-head h2 {
+      margin: 0;
+    }
+
+    .all {
+      border-radius: var(--puresv-radius-sm);
+      color: var(--puresv-accent-text);
+      font-size: var(--puresv-text-sm);
+      font-weight: var(--puresv-weight-medium);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .all:hover {
+      text-decoration: underline;
+    }
+
+    .all:focus-visible {
+      outline: 2px solid var(--puresv-ring);
+      outline-offset: 2px;
+    }
+
+    .showcase {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--puresv-space-4);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    /* Explicit counts: 6 cards stay symmetric at every width. */
+    @media (width < 48rem) {
+      .showcase {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (width < 34rem) {
+      .showcase {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .cards a {
-      display: block;
+    .showcase-card {
+      display: flex;
+      flex-direction: column;
       height: 100%;
-      padding: var(--puresv-space-5);
+      overflow: hidden;
       border: 1px solid var(--puresv-border);
       border-radius: var(--puresv-radius-lg);
       background-color: var(--puresv-canvas);
       color: inherit;
       text-decoration: none;
       box-shadow: inset 0 1px 0 var(--puresv-inset-hl);
-      transition: border-color var(--puresv-duration) var(--puresv-ease);
+      transition: border-color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .cards a:hover {
+    .showcase-card:hover {
       border-color: var(--puresv-border-strong);
     }
 
-    .cards h3 {
-      margin: 0 0 var(--puresv-space-2);
-      font-size: var(--puresv-text-lg);
-      font-weight: var(--puresv-weight-semibold);
-      letter-spacing: -0.02em;
+    .showcase-card:focus-visible {
+      outline: 2px solid var(--puresv-ring);
+      outline-offset: 2px;
     }
 
-    .more {
-      display: inline-block;
-      margin-block-start: var(--puresv-space-4);
-      font-size: var(--puresv-text-sm);
-      font-weight: var(--puresv-weight-medium);
-      color: var(--puresv-accent);
+    /* The live previews are decoration; the card link is the only target. */
+    .preview {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--puresv-space-2);
+      min-height: 7.5rem;
+      padding: var(--puresv-space-4);
+      border-bottom: 1px solid var(--puresv-border);
+      background-color: var(--puresv-surface);
     }
+
+    .meta {
+      padding: var(--puresv-space-4);
+    }
+
+    .meta h3 {
+      margin: 0 0 var(--puresv-space-1);
+      font-size: var(--puresv-text-md);
+      font-weight: var(--puresv-weight-semibold);
+      letter-spacing: -0.01em;
+    }
+
+    .meta p {
+      margin: 0;
+      font-size: var(--puresv-text-sm);
+      line-height: 1.6;
+      color: var(--puresv-text-muted);
+    }
+
   }
 </style>

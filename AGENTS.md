@@ -85,6 +85,10 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the docs site.
 - **Per-page `<title>`** is set by `DocPage`; `app.html` carries the fallback.
 - **Homepage CTAs are plain `<a>`**, not `<Button>` with `goto()` — real links
   work without JS.
+- **The homepage showcases six curated components**, each a live preview inside
+  an `inert` wrapper, with "Browse all components" linking to `/components`.
+  It deliberately does not list all 33. Adding a component means a docs page and
+  a `nav.ts` entry; only promote it to the homepage showcase on purpose.
 
 ## Gotchas that have already cost time
 
@@ -97,7 +101,7 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the docs site.
   from `vite.config.ts`: the condition must not reach the app build.
 - **Homepage grids use explicit `repeat(N)`**, never `auto-fit`. With a fixed
   item count `auto-fit` fits whatever the width allows and strands a lone card
-  on a second row.
+  on a second row. 6 showcase cards: 3 columns → 2 under 48rem → 1 under 34rem.
 - **`$props.id()` must be a direct `const uid = $props.id()` initializer.**
   Templating it inline (building the id with a template literal around
   `$props.id()`) fails the compiler with `props_id_invalid_placement`.
