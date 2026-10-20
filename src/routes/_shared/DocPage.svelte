@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import { Breadcrumb } from "#lib";
   import PropsTable from "./PropsTable.svelte";
   import type { Row } from "./types";
 
@@ -18,11 +19,7 @@
   <title>{title} — PureSV</title>
 </svelte:head>
 
-<nav class="crumbs" aria-label="Breadcrumb">
-  <a href="/">Home</a>
-  <span aria-hidden="true">/</span>
-  <span aria-current="page">{title}</span>
-</nav>
+<Breadcrumb items={[{ label: "Home", href: "/" }, { label: title }]} />
 
 <header class="page-head">
   <h1>{title}</h1>
@@ -42,23 +39,8 @@
 
 <style>
   @layer puresv {
-    .crumbs {
-      display: flex;
-      gap: var(--puresv-space-2);
-      margin-block-end: var(--puresv-space-4);
-      font-size: var(--puresv-text-sm);
-      color: var(--puresv-text-muted);
-    }
-
-    .crumbs a {
-      border-radius: var(--puresv-radius-sm);
-      color: var(--puresv-text-muted);
-      text-decoration: none;
-    }
-
-    .crumbs a:hover {
-      color: var(--puresv-text);
-      text-decoration: underline;
+    .page-head {
+      margin-block-start: var(--puresv-space-4);
     }
 
     .page-head h1 {

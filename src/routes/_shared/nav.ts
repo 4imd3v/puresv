@@ -20,6 +20,7 @@ export const groups = [
       { href: "/components/checkbox", label: "Checkbox" },
       { href: "/components/radio", label: "Radio" },
       { href: "/components/switch", label: "Switch" },
+      { href: "/components/slider", label: "Slider" },
     ],
   },
   {
@@ -43,8 +44,10 @@ export const groups = [
   {
     title: "Navigation",
     links: [
+      { href: "/components/breadcrumb", label: "Breadcrumb" },
       { href: "/components/tabs", label: "Tabs" },
       { href: "/components/accordion", label: "Accordion" },
+      { href: "/components/pagination", label: "Pagination" },
     ],
   },
   {

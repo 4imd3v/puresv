@@ -199,6 +199,14 @@ Component-level rules, expressed as token references above and implemented in
   border. **No left accent stripe.**
 - **Switch** — off-state track is a _readable_ `border-strong` gray, not an
   invisible hairline.
+- **Slider** — native range; the filled portion is the accent and the empty
+  track is `--puresv-fill-muted`. The knob is the same white object as the
+  switch's, and the focus ring sits on the knob, not the full 24px hit area.
+- **Breadcrumb** — muted trail with chevron separators; only the current item
+  uses full-strength text, and it carries `aria-current="page"`.
+- **Pagination** — square `--puresv-control-height` controls; the current page
+  is the only ink-filled one, mirroring a solid Button. Long ranges collapse to
+  first / last / current ±1 with non-interactive ellipses.
 - **Input / Select / Textarea** — crisp **double-ring** focus from the shared
   `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
   glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is

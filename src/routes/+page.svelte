@@ -57,6 +57,11 @@
       summary: "An animated on/off toggle built on a native checkbox.",
     },
     {
+      href: "/components/slider",
+      name: "Slider",
+      summary: "A native range input with a painted fill.",
+    },
+    {
       href: "/components/alert",
       name: "Alert",
       summary: "An inline status banner in four tones.",
@@ -120,6 +125,16 @@
       href: "/components/accordion",
       name: "Accordion",
       summary: "A disclosure list built on the native details element.",
+    },
+    {
+      href: "/components/breadcrumb",
+      name: "Breadcrumb",
+      summary: "A trail of links ending in the current page.",
+    },
+    {
+      href: "/components/pagination",
+      name: "Pagination",
+      summary: "Page controls with a collapsed window on long ranges.",
     },
   ];
 </script>

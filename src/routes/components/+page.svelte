@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Breadcrumb } from "#lib";
   import { groups } from "../_shared/nav";
 </script>
 
@@ -6,11 +7,7 @@
   <title>Components — PureSV</title>
 </svelte:head>
 
-<nav class="crumbs" aria-label="Breadcrumb">
-  <a href="/">Home</a>
-  <span aria-hidden="true">/</span>
-  <span aria-current="page">Components</span>
-</nav>
+<Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Components" }]} />
 
 <header class="head">
   <h1>Components</h1>
@@ -30,23 +27,8 @@
 
 <style>
   @layer puresv {
-    .crumbs {
-      display: flex;
-      gap: var(--puresv-space-2);
-      margin-block-end: var(--puresv-space-4);
-      font-size: var(--puresv-text-sm);
-      color: var(--puresv-text-muted);
-    }
-
-    .crumbs a {
-      border-radius: var(--puresv-radius-sm);
-      color: var(--puresv-text-muted);
-      text-decoration: none;
-    }
-
-    .crumbs a:hover {
-      color: var(--puresv-text);
-      text-decoration: underline;
+    .head {
+      margin-block-start: var(--puresv-space-4);
     }
 
     .head h1 {

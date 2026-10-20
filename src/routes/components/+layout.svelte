@@ -42,6 +42,8 @@
       padding: var(--puresv-space-6) var(--puresv-space-4);
     }
 
+    /* With 21 links the sidebar is taller than a laptop viewport; cap it and
+       let it scroll on its own instead of clipping the last groups. */
     .sidebar {
       position: sticky;
       top: 4.5rem;
@@ -49,6 +51,11 @@
       display: flex;
       flex-direction: column;
       gap: var(--puresv-space-5);
+      max-height: calc(100dvh - 6rem);
+      padding-block-end: var(--puresv-space-4);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      overscroll-behavior: contain;
     }
 
     .nav-group h2 {
