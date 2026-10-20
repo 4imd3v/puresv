@@ -166,6 +166,21 @@
       name: "Kbd",
       summary: "A keycap for keyboard shortcuts.",
     },
+    {
+      href: "/components/avatar-group",
+      name: "AvatarGroup",
+      summary: "A stacked team with a +N overflow chip.",
+    },
+    {
+      href: "/components/empty-state",
+      name: "EmptyState",
+      summary: "A title, explanation and one action for empty surfaces.",
+    },
+    {
+      href: "/components/rating",
+      name: "Rating",
+      summary: "A star rating built on native radios.",
+    },
   ];
 </script>
 

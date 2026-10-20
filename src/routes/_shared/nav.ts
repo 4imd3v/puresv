@@ -19,6 +19,7 @@ export const groups = [
       { href: "/components/select", label: "Select" },
       { href: "/components/checkbox", label: "Checkbox" },
       { href: "/components/radio", label: "Radio" },
+      { href: "/components/rating", label: "Rating" },
       { href: "/components/switch", label: "Switch" },
       { href: "/components/slider", label: "Slider" },
       { href: "/components/segmented-control", label: "SegmentedControl" },
@@ -32,12 +33,14 @@ export const groups = [
       { href: "/components/spinner", label: "Spinner" },
       { href: "/components/skeleton", label: "Skeleton" },
       { href: "/components/toast", label: "Toast" },
+      { href: "/components/empty-state", label: "EmptyState" },
     ],
   },
   {
     title: "Display",
     links: [
       { href: "/components/avatar", label: "Avatar" },
+      { href: "/components/avatar-group", label: "AvatarGroup" },
       { href: "/components/badge", label: "Badge" },
       { href: "/components/card", label: "Card" },
       { href: "/components/separator", label: "Separator" },

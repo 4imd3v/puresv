@@ -224,6 +224,14 @@ Component-level rules, expressed as token references above and implemented in
   accent inset ring (the soft ring does not clear 3:1).
 - **Kbd** — a keycap: `surface` fill, hairline border, a heavier
   `border-strong` bottom edge, mono type. No shadow.
+- **AvatarGroup** — overlapping avatars, each separated by a 2px canvas ring;
+  the +N chip uses `surface-2` and the same size as the avatars.
+- **EmptyState** — centred stack: an optional icon in a bordered circle, a
+  heading at the right level, one muted line of copy, one action. No
+  illustrations.
+- **Rating** — stars at `border-strong` when empty and ink (`primary`) when
+  filled; hover previews the score, and the radios keep the keyboard and form
+  semantics.
 - **Input / Select / Textarea** — crisp **double-ring** focus from the shared
   `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
   glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is

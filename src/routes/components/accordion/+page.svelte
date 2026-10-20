@@ -11,12 +11,18 @@
 
   const code = "<Accordion {items} />";
 
+  const richCode = `<Accordion items={[{ id: "ship", title: "Shipping", content: body }]} />
+
+{#snippet body()}
+  <p>Orders ship <strong>within two business days</strong>.</p>
+{/snippet}`;
+
   const props = [
     {
       name: "items",
-      type: "{ id: string; title: string; content: string }[]",
+      type: "{ id: string; title: string; content: string | Snippet }[]",
       default: "—",
-      description: "The sections to render.",
+      description: "The sections to render. The content can be plain text or a snippet.",
     },
   ];
 </script>
@@ -33,9 +39,20 @@
         <Accordion {items} />
       {/snippet}
     </Demo>
+
+    <Demo label="Snippet content" code={richCode}>
+      {#snippet preview()}
+        <Accordion items={[{ id: "ship", title: "Shipping", content: body }]} />
+        {#snippet body()}
+          <p>Orders ship <strong>within two business days</strong>.</p>
+        {/snippet}
+      {/snippet}
+    </Demo>
   {/snippet}
 
   {#snippet note()}
     Each item is a <code>&lt;details&gt;</code>; the chevron rotates when open.
+    Set <code>content</code> to a snippet to render links or markup inside a
+    section.
   {/snippet}
 </DocPage>

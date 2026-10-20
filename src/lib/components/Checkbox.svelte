@@ -5,23 +5,49 @@
 
 	interface Props extends Omit<HTMLInputAttributes, "children" | "type"> {
 		label?: string;
+		indeterminate?: boolean;
 	}
 
-	let { label, checked = $bindable(false), ...rest }: Props = $props();
+	let {
+		label,
+		checked = $bindable(false),
+		indeterminate = $bindable(false),
+		...rest
+	}: Props = $props();
+
+	let input = $state<HTMLInputElement | null>(null);
+
+	// The native property cannot be set from markup, and the browser clears it on
+	// activation, so mirror it both ways.
+	$effect(() => {
+		if (!input) return;
+		input.indeterminate = indeterminate;
+		function onChange() {
+			if (indeterminate) indeterminate = false;
+		}
+		input.addEventListener("change", onChange);
+		return () => input.removeEventListener("change", onChange);
+	});
 </script>
 
-<label class="checkbox">
-	<input type="checkbox" bind:checked {...rest} />
+<label class="checkbox" data-indeterminate={indeterminate || undefined}>
+	<input type="checkbox" bind:this={input} bind:checked {...rest} />
 	<span class="box" aria-hidden="true">
-		<svg viewBox="0 0 16 16" fill="none">
-			<path
-				d="M3.5 8.5l3 3 6-7"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			/>
-		</svg>
+		{#if indeterminate}
+			<svg viewBox="0 0 16 16" fill="none">
+				<path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+			</svg>
+		{:else}
+			<svg viewBox="0 0 16 16" fill="none">
+				<path
+					d="M3.5 8.5l3 3 6-7"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		{/if}
 	</span>
 	{#if label}
 		<span class="label">{label}</span>
@@ -80,12 +106,14 @@
 			border-color: var(--puresv-text-muted);
 		}
 
-		input:checked + .box {
+		input:checked + .box,
+		.checkbox[data-indeterminate] .box {
 			background-color: var(--puresv-accent);
 			border-color: var(--puresv-accent);
 		}
 
-		input:checked + .box svg {
+		input:checked + .box svg,
+		.checkbox[data-indeterminate] .box svg {
 			opacity: 1;
 			transform: scale(1);
 		}

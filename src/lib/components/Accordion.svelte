@@ -1,12 +1,13 @@
 <script lang="ts">
 	// Design tokens — imported per component so they survive tree-shaking.
 	import "../theme.css";
+	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
 
 	interface Item {
 		id: string;
 		title: string;
-		content: string;
+		content: string | Snippet;
 	}
 
 	interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -31,7 +32,13 @@
 					/>
 				</svg>
 			</summary>
-			<div class="content">{item.content}</div>
+			<div class="content">
+				{#if typeof item.content === "string"}
+					{item.content}
+				{:else}
+					{@render item.content()}
+				{/if}
+			</div>
 		</details>
 	{/each}
 </div>

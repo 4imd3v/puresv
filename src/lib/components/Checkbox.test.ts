@@ -19,6 +19,19 @@ describe("Checkbox", () => {
     expect(box.checked).toBe(true);
   });
 
+  it("sets the native indeterminate property and clears it on change", async () => {
+    const { container } = render(Checkbox, {
+      props: { label: "Select all", indeterminate: true },
+    });
+    const input = screen.getByLabelText("Select all") as HTMLInputElement;
+    expect(input.indeterminate).toBe(true);
+    expect(container.querySelector(".checkbox")?.hasAttribute("data-indeterminate")).toBe(true);
+
+    await fireEvent.change(input);
+    expect(container.querySelector(".checkbox")?.hasAttribute("data-indeterminate")).toBe(false);
+    expect(input.indeterminate).toBe(false);
+  });
+
   it("forwards the disabled state", () => {
     render(Checkbox, { props: { label: "Accept the terms", disabled: true } });
     expect((screen.getByRole("checkbox") as HTMLInputElement).disabled).toBe(true);

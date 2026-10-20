@@ -1,4 +1,5 @@
 import { render, screen, cleanup, fireEvent } from "@testing-library/svelte";
+import { createRawSnippet } from "svelte";
 import { afterEach, describe, expect, it } from "vite-plus/test";
 import Accordion from "./Accordion.svelte";
 
@@ -26,5 +27,13 @@ describe("Accordion", () => {
   it("forwards native attributes", () => {
     const { container } = render(Accordion, { props: { items, class: "x" } });
     expect(container.querySelector(".accordion")?.classList.contains("x")).toBe(true);
+  });
+
+  it("accepts a snippet as the content", () => {
+    const markup = createRawSnippet(() => ({ render: () => "<strong>Rich body</strong>" }));
+    render(Accordion, {
+      props: { items: [{ id: "a", title: "First", content: markup }] },
+    });
+    expect(screen.getByText("Rich body").tagName).toBe("STRONG");
   });
 });
