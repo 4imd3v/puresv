@@ -87,7 +87,7 @@
 
     <Demo label="End aligned" code={endCode}>
       {#snippet preview()}
-        <div class="dropdown-demo">
+        <div class="dropdown-demo end">
           <Dropdown {items} align="end" label="Actions">
             {#snippet trigger(attrs)}
               <Button {...attrs} variant="ghost">Actions</Button>
@@ -115,7 +115,14 @@
       display: flex;
       align-items: flex-start;
       gap: var(--puresv-space-4);
+      width: 100%;
       min-height: 11rem;
+    }
+
+    /* An end-aligned menu opens to the left, so its trigger belongs at the
+       right edge — otherwise the demo frame clips the menu. */
+    .dropdown-demo.end {
+      justify-content: flex-end;
     }
 
     .readout {
