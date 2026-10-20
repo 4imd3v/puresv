@@ -35,10 +35,8 @@
 		.label {
 			margin: 0;
 			color: var(--puresv-text-muted);
-			font-size: var(--puresv-text-xs);
-			font-weight: var(--puresv-weight-semibold);
-			text-transform: uppercase;
-			letter-spacing: 0.08em;
+			font-size: var(--puresv-text-sm);
+			font-weight: var(--puresv-weight-medium);
 		}
 
 		.value {

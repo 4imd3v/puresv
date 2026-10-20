@@ -61,10 +61,9 @@
     .nav-group h2 {
       margin: 0 0 var(--puresv-space-2);
       padding-inline-start: var(--puresv-space-3);
-      font-size: var(--puresv-text-xs);
+      font-size: var(--puresv-text-sm);
       font-weight: var(--puresv-weight-semibold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.005em;
       color: var(--puresv-text-muted);
     }
 

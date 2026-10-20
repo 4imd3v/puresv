@@ -208,8 +208,8 @@ Component-level rules, expressed as token references above and implemented in
   is the only ink-filled one, mirroring a solid Button. Long ranges collapse to
   first / last / current ±1 with non-interactive ellipses.
 - **Table** — a bordered scroll shell around native markup. The header is a
-  `surface` band with the same micro-label treatment as doc sections; rows are
-  separated by hairlines and lift to `surface` on hover. No zebra striping.
+  `surface` band of muted semibold sentence-case labels; rows are separated by
+  hairlines and lift to `surface` on hover. No zebra striping.
 - **Tooltip** — the inverse ink surface (`primary`/`on-primary`), small type,
   a rotated-square arrow, and the overlay shadow. It appears on hover and
   `:focus-within` and never takes the pointer.
@@ -237,8 +237,8 @@ Component-level rules, expressed as token references above and implemented in
   `role="dialog"`. Non-modal; Escape and outside presses close it.
 - **DescriptionList** — `dt` in muted `text-sm` against a value column, rows
   separated by hairlines, collapsing to one column under 32rem.
-- **Stat** — uppercase micro-label, 1.75rem tabular value, and a delta colored
-  with the readable `-text` tokens.
+- **Stat** — a muted sentence-case label, 1.75rem tabular value, and a delta
+  colored with the readable `-text` tokens.
 - **Input / Select / Textarea** — crisp **double-ring** focus from the shared
   `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
   glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is
@@ -269,6 +269,8 @@ Component-level rules, expressed as token references above and implemented in
 - **Don't** add a blurred drop shadow to in-flow cards.
 - **Don't** use loud solid-fill badges or a left-stripe alert.
 - **Don't** use stray font-weights (550/650/700) or loose radii (12px+).
+- **Don't** set labels in all caps with wide tracking. Sentence case, weight and
+  color carry the hierarchy; uppercase micro-labels read as generated UI.
 - **Don't** use the raw semantic colors (success/warning/danger) as small text on
   their soft tints — they fail AA there (they are tuned for icons, dots, and
   borders). Use the `-text` variants instead.

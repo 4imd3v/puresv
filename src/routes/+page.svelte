@@ -323,10 +323,9 @@
 
     .section h2 {
       margin: 0 0 var(--puresv-space-4);
-      font-size: var(--puresv-text-xs);
+      font-size: var(--puresv-text-md);
       font-weight: var(--puresv-weight-semibold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.01em;
       color: var(--puresv-text-muted);
     }
 

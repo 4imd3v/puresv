@@ -32,10 +32,9 @@
       margin: 0;
       padding: var(--puresv-space-3) var(--puresv-space-4);
       border-bottom: 1px solid var(--puresv-border);
-      font-size: var(--puresv-text-xs);
+      font-size: var(--puresv-text-sm);
       font-weight: var(--puresv-weight-semibold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.005em;
       color: var(--puresv-text-muted);
     }
 

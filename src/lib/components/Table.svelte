@@ -55,10 +55,8 @@
 			border-bottom: 1px solid var(--puresv-border);
 			background-color: var(--puresv-surface);
 			color: var(--puresv-text-muted);
-			font-size: var(--puresv-text-xs);
+			font-size: var(--puresv-text-sm);
 			font-weight: var(--puresv-weight-semibold);
-			text-transform: uppercase;
-			letter-spacing: 0.06em;
 			white-space: nowrap;
 		}
 
