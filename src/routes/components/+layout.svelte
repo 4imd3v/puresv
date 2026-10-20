@@ -55,7 +55,22 @@
       padding-block-end: var(--puresv-space-4);
       overflow-y: auto;
       scrollbar-width: thin;
+      scrollbar-color: var(--puresv-border-strong) transparent;
       overscroll-behavior: contain;
+    }
+
+    /* A 4px thumb instead of the browser's default gutter. */
+    .sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      border-radius: var(--puresv-radius-full);
+      background-color: var(--puresv-border-strong);
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
     }
 
     .nav-group h2 {

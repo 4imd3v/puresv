@@ -52,7 +52,7 @@
 
 <main id="main">
 <section class="hero">
-  <Badge tone="accent">v0.0.1</Badge>
+  <Badge tone="accent">Svelte 5</Badge>
   <h1>Pure<span class="accent">SV</span></h1>
   <p class="lede">
     Reusable Svelte 5 components styled with modern CSS. No runtime
