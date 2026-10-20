@@ -17,5 +17,11 @@ export { default as Skeleton } from "./components/Skeleton.svelte";
 export { default as Slider } from "./components/Slider.svelte";
 export { default as Spinner } from "./components/Spinner.svelte";
 export { default as Switch } from "./components/Switch.svelte";
+export { default as Table } from "./components/Table.svelte";
 export { default as Tabs } from "./components/Tabs.svelte";
 export { default as Textarea } from "./components/Textarea.svelte";
+export { default as Tooltip } from "./components/Tooltip.svelte";
+export { default as Toaster } from "./components/Toaster.svelte";
+
+export { dismiss, toast, toasts } from "./toast.svelte";
+export type { ToastItem, ToastOptions, ToastTone } from "./toast.svelte";

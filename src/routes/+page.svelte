@@ -136,6 +136,21 @@
       name: "Pagination",
       summary: "Page controls with a collapsed window on long ranges.",
     },
+    {
+      href: "/components/table",
+      name: "Table",
+      summary: "A scrollable native table with styled header and rows.",
+    },
+    {
+      href: "/components/tooltip",
+      name: "Tooltip",
+      summary: "A short label on hover or keyboard focus.",
+    },
+    {
+      href: "/components/toast",
+      name: "Toast",
+      summary: "Non-blocking feedback from a global queue.",
+    },
   ];
 </script>
 

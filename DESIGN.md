@@ -207,6 +207,15 @@ Component-level rules, expressed as token references above and implemented in
 - **Pagination** — square `--puresv-control-height` controls; the current page
   is the only ink-filled one, mirroring a solid Button. Long ranges collapse to
   first / last / current ±1 with non-interactive ellipses.
+- **Table** — a bordered scroll shell around native markup. The header is a
+  `surface` band with the same micro-label treatment as doc sections; rows are
+  separated by hairlines and lift to `surface` on hover. No zebra striping.
+- **Tooltip** — the inverse ink surface (`primary`/`on-primary`), small type,
+  a rotated-square arrow, and the overlay shadow. It appears on hover and
+  `:focus-within` and never takes the pointer.
+- **Toast** — a fixed bottom-end stack with the overlay shadow, a tone dot (no
+  icon set), and `role="status"`/`"alert"` per tone. Entry/exit motion collapses
+  under reduced motion.
 - **Input / Select / Textarea** — crisp **double-ring** focus from the shared
   `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
   glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is
