@@ -21,6 +21,7 @@ export const groups = [
       { href: "/components/radio", label: "Radio" },
       { href: "/components/switch", label: "Switch" },
       { href: "/components/slider", label: "Slider" },
+      { href: "/components/segmented-control", label: "SegmentedControl" },
     ],
   },
   {
@@ -41,6 +42,7 @@ export const groups = [
       { href: "/components/card", label: "Card" },
       { href: "/components/separator", label: "Separator" },
       { href: "/components/table", label: "Table" },
+      { href: "/components/kbd", label: "Kbd" },
     ],
   },
   {
@@ -56,6 +58,7 @@ export const groups = [
     title: "Overlays",
     links: [
       { href: "/components/modal", label: "Modal" },
+      { href: "/components/dropdown", label: "Dropdown" },
       { href: "/components/tooltip", label: "Tooltip" },
     ],
   },

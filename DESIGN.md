@@ -216,6 +216,14 @@ Component-level rules, expressed as token references above and implemented in
 - **Toast** — a fixed bottom-end stack with the overlay shadow, a tone dot (no
   icon set), and `role="status"`/`"alert"` per tone. Entry/exit motion collapses
   under reduced motion.
+- **SegmentedControl** — a `surface` track with 2px padding; the selected
+  segment is ink-filled, exactly like a solid Button. Radiogroup semantics with
+  arrow keys.
+- **Dropdown** — an overlay panel: border, `radius-md`, `--puresv-shadow-lg`,
+  4px inner padding, items that lift to `surface-2`. Focused items get a full
+  accent inset ring (the soft ring does not clear 3:1).
+- **Kbd** — a keycap: `surface` fill, hairline border, a heavier
+  `border-strong` bottom edge, mono type. No shadow.
 - **Input / Select / Textarea** — crisp **double-ring** focus from the shared
   `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
   glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is

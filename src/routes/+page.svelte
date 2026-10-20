@@ -151,6 +151,21 @@
       name: "Toast",
       summary: "Non-blocking feedback from a global queue.",
     },
+    {
+      href: "/components/dropdown",
+      name: "Dropdown",
+      summary: "A keyboard-navigable menu anchored to a trigger.",
+    },
+    {
+      href: "/components/segmented-control",
+      name: "SegmentedControl",
+      summary: "A single-choice control with an ink-filled selection.",
+    },
+    {
+      href: "/components/kbd",
+      name: "Kbd",
+      summary: "A keycap for keyboard shortcuts.",
+    },
   ];
 </script>
 

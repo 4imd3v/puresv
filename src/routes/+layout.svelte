@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { page } from "$app/state";
-  import { Button } from "#lib";
+  import { SegmentedControl } from "#lib";
   import { topLinks } from "./_shared/nav";
 
   let { children } = $props();
@@ -10,10 +10,9 @@
     { value: "system", label: "System" },
     { value: "light", label: "Light" },
     { value: "dark", label: "Dark" },
-  ] as const;
-  type Theme = (typeof themes)[number]["value"];
+  ];
 
-  let theme = $state<Theme>("system");
+  let theme = $state("system");
   // app.html already applied the saved theme; wait until the state catches up
   // so this effect does not strip it for a frame.
   let ready = $state(false);
@@ -54,16 +53,7 @@
     </nav>
 
     <div class="themes">
-      {#each themes as option (option.value)}
-        <Button
-          variant={theme === option.value ? "solid" : "outline"}
-          size="sm"
-          onclick={() => (theme = option.value)}
-          aria-pressed={theme === option.value}
-        >
-          {option.label}
-        </Button>
-      {/each}
+      <SegmentedControl options={themes} bind:value={theme} aria-label="Theme" />
     </div>
   </div>
 </header>
@@ -172,28 +162,8 @@
       color: var(--puresv-text);
     }
 
-    /* A segmented control rather than three loose buttons — the top bar is
-       chrome, it should not compete with the content. */
     .themes {
       display: flex;
-      gap: 2px;
-      padding: 2px;
-      border: 1px solid var(--puresv-border);
-      border-radius: var(--puresv-radius-md);
-      background-color: var(--puresv-surface);
-    }
-
-    .themes :global(.button) {
-      border-radius: var(--puresv-radius-sm);
-    }
-
-    .themes :global(.button[data-variant="outline"]) {
-      border-color: transparent;
-      background-color: transparent;
-    }
-
-    .themes :global(.button[data-variant="outline"]:hover) {
-      background-color: var(--puresv-surface-2);
     }
 
     .footer {
