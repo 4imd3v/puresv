@@ -232,6 +232,13 @@ Component-level rules, expressed as token references above and implemented in
 - **Rating** — stars at `border-strong` when empty and ink (`primary`) when
   filled; hover previews the score, and the radios keep the keyboard and form
   semantics.
+- **Popover** — an overlay panel anchored with fixed coordinates (so
+  `overflow: hidden` cannot clip it), `radius-md`, `--puresv-shadow-lg`,
+  `role="dialog"`. Non-modal; Escape and outside presses close it.
+- **DescriptionList** — `dt` in muted `text-sm` against a value column, rows
+  separated by hairlines, collapsing to one column under 32rem.
+- **Stat** — uppercase micro-label, 1.75rem tabular value, and a delta colored
+  with the readable `-text` tokens.
 - **Input / Select / Textarea** — crisp **double-ring** focus from the shared
   `--puresv-focus-shadow` (`0 0 0 2px canvas, 0 0 0 4px accent-ring`), not a soft
   glow; the error state swaps to `--puresv-focus-shadow-danger`. Error text is

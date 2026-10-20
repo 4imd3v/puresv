@@ -1,6 +1,7 @@
 <script lang="ts">
 	// Design tokens — imported per component so they survive tree-shaking.
 	import "../theme.css";
+	import Field from "./Field.svelte";
 	import type { HTMLInputAttributes } from "svelte/elements";
 
 	interface Props extends HTMLInputAttributes {
@@ -9,49 +10,20 @@
 	}
 
 	let { label, error, "aria-describedby": describedBy, ...rest }: Props = $props();
-
-	// Give the message an id so it is announced with the field, not just shown.
-	const uid = $props.id();
-	const errorId = `${uid}-error`;
-	const describedByValue = $derived(
-		[describedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined,
-	);
 </script>
 
-<div class="field" data-error={error || undefined}>
-	<label>
-		{#if label}
-			<span class="label">{label}</span>
-		{/if}
-		<input {...rest} aria-invalid={error ? true : undefined} aria-describedby={describedByValue} />
-	</label>
-	{#if error}
-		<span class="error" id={errorId}>{error}</span>
-	{/if}
-</div>
+<Field {label} {error}>
+	{#snippet children(errorId)}
+		<input
+			{...rest}
+			aria-invalid={error ? true : undefined}
+			aria-describedby={[describedBy, errorId].filter(Boolean).join(" ") || undefined}
+		/>
+	{/snippet}
+</Field>
 
 <style>
 	@layer puresv {
-		.field {
-			display: flex;
-			flex-direction: column;
-			gap: var(--puresv-space-2);
-			min-width: 0;
-		}
-
-		label {
-			display: flex;
-			flex-direction: column;
-			gap: var(--puresv-space-2);
-			min-width: 0;
-		}
-
-		.label {
-			font-size: var(--puresv-text-md);
-			font-weight: var(--puresv-weight-medium);
-			color: var(--puresv-text);
-		}
-
 		input {
 			box-sizing: border-box;
 			min-width: 0;
@@ -90,18 +62,15 @@
 			background-color: var(--puresv-surface);
 		}
 
-		.field[data-error] input {
+		/* The invalid state hangs off the control itself, so it works no matter
+		   which component renders the field wrapper. */
+		input[aria-invalid="true"] {
 			border-color: var(--puresv-danger);
 		}
 
-		.field[data-error] input:focus-visible {
+		input[aria-invalid="true"]:focus-visible {
 			border-color: var(--puresv-danger);
 			box-shadow: var(--puresv-focus-shadow-danger);
-		}
-
-		.error {
-			font-size: var(--puresv-text-sm);
-			color: var(--puresv-danger-text);
 		}
 	}
 </style>

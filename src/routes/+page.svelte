@@ -181,6 +181,21 @@
       name: "Rating",
       summary: "A star rating built on native radios.",
     },
+    {
+      href: "/components/popover",
+      name: "Popover",
+      summary: "A floating panel that closes on Escape or an outside click.",
+    },
+    {
+      href: "/components/description-list",
+      name: "DescriptionList",
+      summary: "Term and value rows for metadata.",
+    },
+    {
+      href: "/components/stat",
+      name: "Stat",
+      summary: "A metric with a tabular value and a delta.",
+    },
   ];
 </script>
 

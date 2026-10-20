@@ -1,6 +1,7 @@
 <script lang="ts">
 	// Design tokens — imported per component so they survive tree-shaking.
 	import "../theme.css";
+	import Field from "./Field.svelte";
 	import type { Snippet } from "svelte";
 	import type { HTMLSelectAttributes } from "svelte/elements";
 
@@ -11,22 +12,16 @@
 	}
 
 	let { label, error, children, "aria-describedby": describedBy, ...rest }: Props = $props();
-
-	// Give the message an id so it is announced with the field, not just shown.
-	const uid = $props.id();
-	const errorId = `${uid}-error`;
-	const describedByValue = $derived(
-		[describedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined,
-	);
 </script>
 
-<div class="field" data-error={error || undefined}>
-	<label>
-		{#if label}
-			<span class="label">{label}</span>
-		{/if}
+<Field {label} {error}>
+	{#snippet children(errorId)}
 		<span class="control">
-			<select {...rest} aria-invalid={error ? true : undefined} aria-describedby={describedByValue}>
+			<select
+				{...rest}
+				aria-invalid={error ? true : undefined}
+				aria-describedby={[describedBy, errorId].filter(Boolean).join(" ") || undefined}
+			>
 				{@render children()}
 			</select>
 			<svg class="chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -39,34 +34,11 @@
 				/>
 			</svg>
 		</span>
-	</label>
-	{#if error}
-		<span class="error" id={errorId}>{error}</span>
-	{/if}
-</div>
+	{/snippet}
+</Field>
 
 <style>
 	@layer puresv {
-		.field {
-			display: flex;
-			flex-direction: column;
-			gap: var(--puresv-space-2);
-			min-width: 0;
-		}
-
-		label {
-			display: flex;
-			flex-direction: column;
-			gap: var(--puresv-space-2);
-			min-width: 0;
-		}
-
-		.label {
-			font-size: var(--puresv-text-md);
-			font-weight: var(--puresv-weight-medium);
-			color: var(--puresv-text);
-		}
-
 		.control {
 			position: relative;
 			display: inline-flex;
@@ -120,18 +92,13 @@
 			background-color: var(--puresv-surface);
 		}
 
-		.field[data-error] select {
+		select[aria-invalid="true"] {
 			border-color: var(--puresv-danger);
 		}
 
-		.field[data-error] select:focus-visible {
+		select[aria-invalid="true"]:focus-visible {
 			border-color: var(--puresv-danger);
 			box-shadow: var(--puresv-focus-shadow-danger);
-		}
-
-		.error {
-			font-size: var(--puresv-text-sm);
-			color: var(--puresv-danger-text);
 		}
 	}
 </style>

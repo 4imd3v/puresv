@@ -76,6 +76,7 @@
     <code>toast(options)</code> returns an id and stacks newest last;
     <code>dismiss(id)</code> closes one early. The region is labelled
     "Notifications" and sits in the bottom-end corner, above the safe area.
-    Mount a single <code>Toaster</code> — not one per page.
+    Hovering a toast pauses its countdown. Mount a single
+    <code>Toaster</code> — not one per page.
   {/snippet}
 </DocPage>

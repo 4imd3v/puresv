@@ -119,6 +119,35 @@ native `<div>` attributes.
 | `tone` | `"neutral" \| "accent" \| "success" \| "warning" \| "danger"` | `"neutral"` |
 | `dot`  | `boolean`                                                     | `false`     |
 
+### Toast
+
+Render one `<Toaster />` near the root of your layout and call `toast()` from
+anywhere:
+
+```svelte
+<Button onclick={() => toast({ title: "Saved", tone: "success" })}>Save</Button>
+<Toaster />
+```
+
+Options: `title`, `description`, `tone` (`info | success | warning | danger`)
+and `duration` (ms, `0` keeps it on screen). Hovering a toast pauses its
+countdown; `dismiss(id)` closes it early.
+
+### The full set
+
+33 components, grouped the same way as the docs sidebar:
+
+| Group      | Components                                                                         |
+| ---------- | ---------------------------------------------------------------------------------- |
+| Actions    | Button                                                                             |
+| Forms      | Input, Textarea, Select, Checkbox, Radio, Rating, Switch, Slider, SegmentedControl |
+| Feedback   | Alert, Progress, Spinner, Skeleton, Toast, EmptyState                              |
+| Display    | Avatar, AvatarGroup, Badge, Card, Separator, Table, DescriptionList, Stat, Kbd     |
+| Navigation | Breadcrumb, Tabs, Accordion, Pagination                                            |
+| Overlays   | Modal, Popover, Dropdown, Tooltip                                                  |
+
+Every component ships with its own test and uses only design tokens.
+
 ## Adding a component
 
 1. Create `src/lib/components/MyThing.svelte`.
@@ -127,6 +156,8 @@ native `<div>` attributes.
 3. Style with `var(--puresv-*)` tokens only — no hardcoded colors or spacing.
 4. Re-export it from `src/lib/index.ts`.
 5. Add `MyThing.test.ts` next to it and run `vp test`.
+6. Add a docs page under `src/routes/components/<name>`, a link in
+   `src/routes/_shared/nav.ts`, and a card on the homepage.
 
 ## Development
 

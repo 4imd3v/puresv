@@ -45,6 +45,8 @@ export const groups = [
       { href: "/components/card", label: "Card" },
       { href: "/components/separator", label: "Separator" },
       { href: "/components/table", label: "Table" },
+      { href: "/components/description-list", label: "DescriptionList" },
+      { href: "/components/stat", label: "Stat" },
       { href: "/components/kbd", label: "Kbd" },
     ],
   },
@@ -61,6 +63,7 @@ export const groups = [
     title: "Overlays",
     links: [
       { href: "/components/modal", label: "Modal" },
+      { href: "/components/popover", label: "Popover" },
       { href: "/components/dropdown", label: "Dropdown" },
       { href: "/components/tooltip", label: "Tooltip" },
     ],

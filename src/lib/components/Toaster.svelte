@@ -2,7 +2,7 @@
 	// Design tokens — imported per component so they survive tree-shaking.
 	import "../theme.css";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { dismiss, toasts } from "../toast.svelte";
+	import { dismiss, pause, resume, toasts } from "../toast.svelte";
 
 	interface Props extends Omit<HTMLAttributes<HTMLElement>, "children"> {
 		"aria-label"?: string;
@@ -17,6 +17,8 @@
 			class="toast"
 			data-tone={item.tone}
 			role={item.tone === "danger" || item.tone === "warning" ? "alert" : "status"}
+			onmouseenter={() => pause(item.id)}
+			onmouseleave={() => resume(item.id)}
 		>
 			<span class="dot" aria-hidden="true"></span>
 			<div class="content">

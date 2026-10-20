@@ -40,6 +40,21 @@ describe("Toaster", () => {
     expect(toasts.length).toBe(0);
   });
 
+  it("pauses the countdown while hovered", async () => {
+    vi.useFakeTimers();
+    toast({ title: "Saved", duration: 1000 });
+    render(Toaster);
+    const card = screen.getByRole("status");
+
+    await fireEvent.mouseEnter(card);
+    vi.advanceTimersByTime(5000);
+    expect(toasts.length).toBe(1);
+
+    await fireEvent.mouseLeave(card);
+    vi.advanceTimersByTime(1000);
+    expect(toasts.length).toBe(0);
+  });
+
   it("stays put when the duration is zero", () => {
     vi.useFakeTimers();
     toast({ title: "Saved", duration: 0 });
