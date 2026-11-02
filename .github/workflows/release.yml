@@ -1,8 +1,10 @@
 name: release
 
-# Publishes with trusted publishing (OIDC): no NPM_TOKEN anywhere, and npm
-# attaches a provenance attestation automatically. Requires the package's
-# trusted publisher on npmjs.com to name this workflow file.
+# Stages a release with trusted publishing (OIDC): no NPM_TOKEN anywhere, and
+# nothing reaches the registry until a maintainer approves the staged version on
+# npmjs.com with 2FA. Requires the package's trusted publisher on npmjs.com to
+# name this workflow file — 'npm stage publish' is always an allowed action, so
+# the publisher needs no extra permission ticked.
 on:
   push:
     tags: ["v*"]
@@ -16,7 +18,7 @@ permissions:
   id-token: write
 
 jobs:
-  publish:
+  stage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -57,13 +59,19 @@ jobs:
           echo "NODE_AUTH_TOKEN is ${NODE_AUTH_TOKEN:-<unset>}"
 
       # Build the tarball with pnpm (prepack rebuilds dist and runs publint),
-      # then publish it with npm from a neutral directory: only the npm CLI
+      # then stage it with npm from a neutral directory: only the npm CLI
       # performs the OIDC token exchange, and npm cannot run inside this repo.
       - run: pnpm pack --pack-destination "$RUNNER_TEMP"
 
-      - run: cd "$RUNNER_TEMP" && npm publish puresv-*.tgz
+      - run: cd "$RUNNER_TEMP" && npm stage publish puresv-*.tgz
 
-      # If the publish above fails, print what the registry actually sees so the
+      - name: What to do next
+        run: |
+          echo "Staged. Approve it with your passkey on npmjs.com:"
+          echo "  https://www.npmjs.com/package/puresv"
+          cd "$RUNNER_TEMP" && npm stage list
+
+      # If the staging call fails, print what the registry actually sees so the
       # mismatch is visible instead of guessed at.
       - name: Diagnose the trusted publisher
         if: failure()
@@ -74,5 +82,3 @@ jobs:
             "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=npm:registry.npmjs.org" \
             | python3 -c 'import sys,json;print(json.load(sys.stdin)["value"])')
           echo "$ID" | python3 -c 'import sys,base64,json; p=sys.stdin.read().strip().split(".")[1]; p+="="*(-len(p)%4); c=json.loads(base64.urlsafe_b64decode(p)); print(json.dumps({k:c.get(k) for k in ("repository","repository_owner","workflow_ref","job_workflow_ref","environment","ref","event_name")}, indent=1))'
-          echo "--- does the publisher allow npm stage publish? ---"
-          cd "$RUNNER_TEMP" && npm stage publish puresv-*.tgz --dry-run
