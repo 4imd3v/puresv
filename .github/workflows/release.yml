@@ -65,11 +65,12 @@ jobs:
 
       - run: cd "$RUNNER_TEMP" && npm stage publish puresv-*.tgz
 
+      # No 'npm stage list' here: reading the queue needs a user token, and OIDC
+      # credentials only authorise the staging call itself.
       - name: What to do next
         run: |
           echo "Staged. Approve it with your passkey on npmjs.com:"
           echo "  https://www.npmjs.com/package/puresv"
-          cd "$RUNNER_TEMP" && npm stage list
 
       # If the staging call fails, print what the registry actually sees so the
       # mismatch is visible instead of guessed at.
