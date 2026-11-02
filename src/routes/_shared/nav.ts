@@ -3,6 +3,7 @@
 export const topLinks = [
   { href: "/", label: "Home" },
   { href: "/components", label: "Components" },
+  { href: "/blocks", label: "Blocks" },
 ];
 
 // Sidebar + browse-page groups, by category.

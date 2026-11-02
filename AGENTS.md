@@ -80,6 +80,10 @@ Svelte 5 component library. `src/lib` ships, `src/routes` is the docs site.
   `src/routes/_shared/` behind the `index.ts` barrel. From
   `components/<name>/+page.svelte` that is `../../_shared/index` — two levels.
 - **Types live in `_shared/types.ts`**, never re-exported from a `.svelte` file.
+- **Blocks** are full-page compositions in `src/routes/blocks/_blocks/<slug>.svelte`
+  — the filename _is_ the slug, because the gallery and the `/blocks/<slug>` code
+  panel both glob for it. Metadata lives in `src/routes/blocks/_registry.ts`.
+  Blocks are copied by users, never exported from `src/lib`.
 - **`page` comes from `$app/state`**, not `$app/stores`, and it is not a store:
   read `page.url.pathname` with no `$` prefix.
 - **Per-page `<title>`** is set by `DocPage`; `app.html` carries the fallback.
