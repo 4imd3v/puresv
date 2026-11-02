@@ -11,7 +11,16 @@
 		children: Snippet;
 	}
 
-	let { label, error, children, "aria-describedby": describedBy, ...rest }: Props = $props();
+	// Bound as "options": the Field snippet below IS the children prop, and a
+	// local binding of that name would shadow the prop it renders (infinite
+	// recursion on SSR).
+	let {
+		label,
+		error,
+		children: options,
+		"aria-describedby": describedBy,
+		...rest
+	}: Props = $props();
 </script>
 
 <Field {label} {error}>
@@ -22,7 +31,7 @@
 				aria-invalid={error ? true : undefined}
 				aria-describedby={[describedBy, errorId].filter(Boolean).join(" ") || undefined}
 			>
-				{@render children()}
+				{@render options()}
 			</select>
 			<svg class="chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
 				<path
