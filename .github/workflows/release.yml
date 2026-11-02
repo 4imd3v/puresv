@@ -1,0 +1,47 @@
+name: release
+
+# Publishes with trusted publishing (OIDC): no NPM_TOKEN anywhere, and the
+# provenance attestation is signed by GitHub. Requires the repository's
+# trusted publisher on npmjs.com to name this workflow file.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  # The OIDC token the registry exchanges for a short-lived publish credential.
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm, not npm: package.json pins pnpm in devEngines.packageManager, and
+      # this repo's .npmrc has engine-strict=true, so npm aborts here.
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.11.2
+          run_install: false
+
+      # registry-url only points the CLI at npmjs. Do NOT add NODE_AUTH_TOKEN —
+      # a long-lived token would shadow the OIDC exchange.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Tag must match package.json
+        run: |
+          expected="v$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "$expected" ]; then
+            echo "tag $GITHUB_REF_NAME does not match $expected" >&2
+            exit 1
+          fi
+
+      # prepack builds dist and runs publint, so this step never ships stale code.
+      - run: pnpm publish --provenance --no-git-checks
