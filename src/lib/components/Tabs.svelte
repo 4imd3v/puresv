@@ -88,8 +88,10 @@
 			transition: color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.tab:hover {
-			color: var(--puresv-text);
+		@media (hover: hover) {
+			.tab:hover {
+				color: var(--puresv-text);
+			}
 		}
 
 		.tab[aria-selected="true"] {
@@ -128,13 +130,6 @@
 			outline: 2px solid var(--puresv-ring);
 			outline-offset: 2px;
 			border-radius: var(--puresv-radius-sm);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.tab,
-			.tab::after {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

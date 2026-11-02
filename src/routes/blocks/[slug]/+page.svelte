@@ -178,6 +178,21 @@
       font-size: var(--puresv-text-xs);
     }
 
+    /* Preview and code share one slot, so the switch fades the incoming panel
+       in instead of teleporting. Only one panel exists at a time, so there is
+       nothing to double-expose. */
+    .preview,
+    .code {
+      transition: opacity var(--puresv-duration) var(--puresv-ease-out);
+    }
+
+    @starting-style {
+      .preview,
+      .code {
+        opacity: 0;
+      }
+    }
+
     .preview {
       background-color: var(--puresv-canvas);
     }

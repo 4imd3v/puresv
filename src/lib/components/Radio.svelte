@@ -71,8 +71,10 @@
 				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.radio:hover input:not(:checked):not(:disabled) + .dot {
-			border-color: var(--puresv-text-muted);
+		@media (hover: hover) {
+			.radio:hover input:not(:checked):not(:disabled) + .dot {
+				border-color: var(--puresv-text-muted);
+			}
 		}
 
 		input:checked + .dot {
@@ -98,13 +100,6 @@
 		.label {
 			font-size: var(--puresv-text-md);
 			color: var(--puresv-text);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.dot,
-			.dot::after {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

@@ -48,6 +48,21 @@
 
     .demo-code {
       border-top: 1px solid var(--puresv-border);
+      interpolate-size: allow-keywords;
+    }
+
+    /* The same grow-on-open the Accordion uses, so a disclosure behaves the
+       same everywhere on the site. Older browsers keep the native snap. */
+    .demo-code::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition:
+        block-size var(--puresv-duration) var(--puresv-ease-out),
+        content-visibility var(--puresv-duration) allow-discrete;
+    }
+
+    .demo-code[open]::details-content {
+      block-size: auto;
     }
 
     .demo-code summary {

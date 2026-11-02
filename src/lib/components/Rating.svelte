@@ -24,8 +24,12 @@
 	let hover = $state(0);
 	const filled = $derived(hover || value);
 
+	// Touch fires mouseenter and leaves the preview stuck on the tapped star.
+	const canHover = () =>
+		typeof window === "undefined" || window.matchMedia("(hover: hover)").matches;
+
 	function preview(star: number, on: boolean) {
-		if (readonly) return;
+		if (readonly || !canHover()) return;
 		hover = on ? star : 0;
 	}
 </script>
@@ -105,12 +109,6 @@
 			outline: 2px solid var(--puresv-ring);
 			outline-offset: 2px;
 			border-radius: var(--puresv-radius-sm);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.star {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

@@ -19,6 +19,14 @@ describe("SegmentedControl", () => {
     expect(screen.getByRole("radiogroup", { name: "Range" })).toBeTruthy();
   });
 
+  it("renders one decorative ink indicator behind the segments", () => {
+    render(SegmentedControl, { props: { options } });
+    const group = screen.getByRole("radiogroup");
+    const indicators = group.querySelectorAll(":scope > .indicator");
+    expect(indicators.length).toBe(1);
+    expect(indicators[0].getAttribute("aria-hidden")).toBe("true");
+  });
+
   it("selects on click", async () => {
     render(SegmentedControl, { props: { options } });
     await fireEvent.click(screen.getByRole("radio", { name: "Week" }));

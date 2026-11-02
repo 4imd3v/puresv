@@ -245,8 +245,13 @@ Component-level rules, expressed as token references above and implemented in
   linked with `aria-describedby`.
 - **Focus everywhere** — a crisp ring, never `outline: none` without a
   replacement. Motion uses a strong ease-out
-  (`cubic-bezier(0.23, 1, 0.32, 1)`) at `140ms`, and respects
-  `prefers-reduced-motion`.
+  (`cubic-bezier(0.23, 1, 0.32, 1)`) and only three durations:
+  `--puresv-duration` (140ms, the default), `--puresv-duration-fast` (120ms,
+  tooltips) and `--puresv-duration-overlay` (200ms, modals and popovers).
+  Anything that travels across the screen — a sliding indicator — uses
+  `--puresv-ease-in-out` (`cubic-bezier(0.77, 0, 0.175, 1)`) instead. Under
+  `prefers-reduced-motion` `theme.css` collapses all three durations, so no
+  component needs its own media query.
 
 ## Do's and Don'ts
 
@@ -258,7 +263,9 @@ Component-level rules, expressed as token references above and implemented in
 - Define surfaces with **borders + the inset hairline**; reserve layered shadows
   for overlays.
 - Keep radii **tight** (4/6/8px) and weights on the **400/500/600** scale.
-- Keep motion **fast (< 200ms) and ease-out**, and honor reduced-motion.
+- Keep motion **fast (140ms, 200ms for overlays) and ease-out**, and honor
+  reduced-motion through the duration tokens, never a per-component media
+  query.
 
 **Don't**
 

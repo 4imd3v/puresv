@@ -52,8 +52,10 @@
 				background-color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		a:hover {
-			border-color: var(--puresv-border-strong);
+		@media (hover: hover) {
+			a:hover {
+				border-color: var(--puresv-border-strong);
+			}
 		}
 
 		a:focus-visible {

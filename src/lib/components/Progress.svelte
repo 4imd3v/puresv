@@ -45,11 +45,5 @@
 			transform-origin: left center;
 			transition: transform var(--puresv-duration) var(--puresv-ease-out);
 		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.fill {
-				transition-duration: 0.01ms;
-			}
-		}
 	}
 </style>

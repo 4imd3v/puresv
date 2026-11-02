@@ -53,19 +53,22 @@
 			opacity: 0;
 			visibility: hidden;
 			transition:
-				opacity 120ms var(--puresv-ease-out),
-				transform 120ms var(--puresv-ease-out),
-				visibility 120ms;
+				opacity var(--puresv-duration-fast) var(--puresv-ease-out),
+				transform var(--puresv-duration-fast) var(--puresv-ease-out),
+				visibility var(--puresv-duration-fast);
 		}
 
+		/* Grows out of the trigger edge it is anchored to, never from its centre. */
 		.tooltip[data-placement="top"] .bubble {
 			bottom: calc(100% + 0.375rem);
-			transform: translateX(-50%) translateY(0.125rem);
+			transform: translateX(-50%) translateY(0.125rem) scale(0.96);
+			transform-origin: bottom center;
 		}
 
 		.tooltip[data-placement="bottom"] .bubble {
 			top: calc(100% + 0.375rem);
-			transform: translateX(-50%) translateY(-0.125rem);
+			transform: translateX(-50%) translateY(-0.125rem) scale(0.96);
+			transform-origin: top center;
 		}
 
 		/* The arrow inherits the bubble surface, so it follows the theme. */
@@ -92,13 +95,7 @@
 		.tooltip:focus-within .bubble {
 			opacity: 1;
 			visibility: visible;
-			transform: translateX(-50%) translateY(0);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.bubble {
-				transition-duration: 0.01ms;
-			}
+			transform: translateX(-50%) translateY(0) scale(1);
 		}
 	}
 </style>

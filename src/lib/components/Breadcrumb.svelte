@@ -70,8 +70,10 @@
 			transition: color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		a:hover {
-			color: var(--puresv-text);
+		@media (hover: hover) {
+			a:hover {
+				color: var(--puresv-text);
+			}
 		}
 
 		a:focus-visible {

@@ -80,13 +80,9 @@
 			transition: background-color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.table :global(tbody tr:hover) {
-			background-color: var(--puresv-surface);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.table :global(tbody tr) {
-				transition-duration: 0.01ms;
+		@media (hover: hover) {
+			.table :global(tbody tr:hover) {
+				background-color: var(--puresv-surface);
 			}
 		}
 	}

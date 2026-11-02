@@ -102,8 +102,10 @@
 				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.checkbox:hover input:not(:checked):not(:disabled) + .box {
-			border-color: var(--puresv-text-muted);
+		@media (hover: hover) {
+			.checkbox:hover input:not(:checked):not(:disabled) + .box {
+				border-color: var(--puresv-text-muted);
+			}
 		}
 
 		input:checked + .box,
@@ -131,13 +133,6 @@
 		.label {
 			font-size: var(--puresv-text-md);
 			color: var(--puresv-text);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.box,
-			.box svg {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

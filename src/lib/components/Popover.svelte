@@ -52,20 +52,16 @@
 	function position() {
 		if (!anchor || !panel) return;
 		const a = anchor.getBoundingClientRect();
-		const p = panel.getBoundingClientRect();
+		// Layout size, not the bounding rect: the entry scale would be measured
+		// and land the panel a couple of pixels off.
+		const w = panel.offsetWidth;
+		const h = panel.offsetHeight;
 		let x =
-			align === "start"
-				? a.left
-				: align === "end"
-					? a.right - p.width
-					: a.left + a.width / 2 - p.width / 2;
-		const y = side === "bottom" ? a.bottom + gap : a.top - p.height - gap;
-		x = Math.min(Math.max(margin, x), Math.max(margin, window.innerWidth - p.width - margin));
+			align === "start" ? a.left : align === "end" ? a.right - w : a.left + a.width / 2 - w / 2;
+		const y = side === "bottom" ? a.bottom + gap : a.top - h - gap;
+		x = Math.min(Math.max(margin, x), Math.max(margin, window.innerWidth - w - margin));
 		left = x;
-		top = Math.min(
-			Math.max(margin, y),
-			Math.max(margin, window.innerHeight - p.height - margin),
-		);
+		top = Math.min(Math.max(margin, y), Math.max(margin, window.innerHeight - h - margin));
 		ready = true;
 	}
 
@@ -178,22 +174,37 @@
 			font-size: var(--puresv-text-sm);
 			line-height: 1.6;
 			opacity: 0;
-			transition: opacity var(--puresv-duration) var(--puresv-ease-out);
+			/* Unfold out of the trigger, like the Dropdown. The origin follows the
+			   side and alignment the panel is anchored to. */
+			--puresv-pop-y: 0.25rem;
+			transform: translateY(var(--puresv-pop-y)) scale(0.98);
+			transform-origin: var(--puresv-origin-x, 50%) var(--puresv-origin-y, 0%);
+			transition:
+				opacity var(--puresv-duration-overlay) var(--puresv-ease-out),
+				transform var(--puresv-duration-overlay) var(--puresv-ease-out);
+		}
+
+		.panel[data-side="top"] {
+			--puresv-pop-y: -0.25rem;
+			--puresv-origin-y: 100%;
+		}
+
+		.panel[data-align="start"] {
+			--puresv-origin-x: 0%;
+		}
+
+		.panel[data-align="end"] {
+			--puresv-origin-x: 100%;
 		}
 
 		.panel[data-ready] {
 			opacity: 1;
+			transform: none;
 		}
 
 		.panel:focus-visible {
 			outline: 2px solid var(--puresv-ring);
 			outline-offset: 2px;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.panel {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

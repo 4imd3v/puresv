@@ -68,8 +68,8 @@
 			box-shadow: var(--puresv-shadow-lg);
 			pointer-events: auto;
 			transition:
-				opacity 180ms var(--puresv-ease-out),
-				transform 180ms var(--puresv-ease-out);
+				opacity var(--puresv-duration-overlay) var(--puresv-ease-out),
+				transform var(--puresv-duration-overlay) var(--puresv-ease-out);
 		}
 
 		/* Entry only; a dismissed toast leaves immediately. Same technique as the
@@ -147,12 +147,19 @@
 			cursor: pointer;
 			transition:
 				background-color var(--puresv-duration) var(--puresv-ease-out),
-				color var(--puresv-duration) var(--puresv-ease-out);
+				color var(--puresv-duration) var(--puresv-ease-out),
+				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.close:hover {
-			background-color: var(--puresv-surface-2);
-			color: var(--puresv-text);
+		.close:active {
+			transform: scale(0.97);
+		}
+
+		@media (hover: hover) {
+			.close:hover {
+				background-color: var(--puresv-surface-2);
+				color: var(--puresv-text);
+			}
 		}
 
 		.close:focus-visible {
@@ -163,13 +170,6 @@
 		.close svg {
 			width: 0.875rem;
 			height: 0.875rem;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.toast,
-			.close {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

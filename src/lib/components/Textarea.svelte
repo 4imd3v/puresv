@@ -46,8 +46,10 @@
 			color: var(--puresv-text-muted);
 		}
 
-		textarea:hover:not(:disabled) {
-			border-color: var(--puresv-border-strong);
+		@media (hover: hover) {
+			textarea:hover:not(:disabled) {
+				border-color: var(--puresv-border-strong);
+			}
 		}
 
 		textarea:focus-visible {

@@ -237,10 +237,16 @@
 			cursor: pointer;
 		}
 
-		.item:hover:not(:disabled),
 		.item:focus-visible {
 			outline: none;
 			background-color: var(--puresv-surface-2);
+		}
+
+		@media (hover: hover) {
+			.item:hover:not(:disabled) {
+				outline: none;
+				background-color: var(--puresv-surface-2);
+			}
 		}
 
 		/* The ring must clear 3:1, so it uses the full accent, not the soft ring. */
@@ -252,12 +258,6 @@
 		.item[aria-disabled="true"] {
 			opacity: 0.45;
 			cursor: not-allowed;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.menu {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

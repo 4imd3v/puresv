@@ -92,10 +92,6 @@
 			color: var(--puresv-on-primary);
 		}
 
-		.button[data-variant="solid"]:hover:not(:disabled) {
-			background-color: var(--puresv-primary-hover);
-		}
-
 		.button[data-variant="solid"]:active:not(:disabled) {
 			transform: scale(0.97);
 		}
@@ -105,10 +101,6 @@
 		.button[data-variant="soft"] {
 			background-color: var(--puresv-accent-soft);
 			color: var(--puresv-accent-hover);
-		}
-
-		.button[data-variant="soft"]:hover:not(:disabled) {
-			background-color: var(--puresv-accent-soft-hover);
 		}
 
 		.button[data-variant="soft"]:active:not(:disabled) {
@@ -122,11 +114,6 @@
 			color: var(--puresv-text);
 		}
 
-		.button[data-variant="outline"]:hover:not(:disabled) {
-			border-color: var(--puresv-border-strong);
-			background-color: var(--puresv-surface);
-		}
-
 		.button[data-variant="outline"]:active:not(:disabled) {
 			transform: scale(0.97);
 		}
@@ -135,10 +122,6 @@
 		.button[data-variant="ghost"] {
 			background-color: transparent;
 			color: var(--puresv-text);
-		}
-
-		.button[data-variant="ghost"]:hover:not(:disabled) {
-			background-color: var(--puresv-surface-2);
 		}
 
 		.button[data-variant="ghost"]:active:not(:disabled) {
@@ -158,8 +141,28 @@
 			text-underline-offset: 0.25em;
 		}
 
-		.button[data-variant="link"]:hover:not(:disabled) {
-			text-decoration-color: currentColor;
+		/* Hover is pointer-only: on touch it fires and then sticks after the tap. */
+		@media (hover: hover) {
+			.button[data-variant="solid"]:hover:not(:disabled) {
+				background-color: var(--puresv-primary-hover);
+			}
+
+			.button[data-variant="soft"]:hover:not(:disabled) {
+				background-color: var(--puresv-accent-soft-hover);
+			}
+
+			.button[data-variant="outline"]:hover:not(:disabled) {
+				border-color: var(--puresv-border-strong);
+				background-color: var(--puresv-surface);
+			}
+
+			.button[data-variant="ghost"]:hover:not(:disabled) {
+				background-color: var(--puresv-surface-2);
+			}
+
+			.button[data-variant="link"]:hover:not(:disabled) {
+				text-decoration-color: currentColor;
+			}
 		}
 
 		/* States shared by every variant. */
@@ -174,16 +177,6 @@
 			box-shadow: none;
 			cursor: not-allowed;
 			transform: none;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.button {
-				transition-duration: 0.01ms;
-			}
-
-			.button:active:not(:disabled) {
-				transform: none;
-			}
 		}
 	}
 </style>

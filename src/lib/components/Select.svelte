@@ -85,8 +85,10 @@
 			pointer-events: none;
 		}
 
-		select:hover:not(:disabled) {
-			border-color: var(--puresv-border-strong);
+		@media (hover: hover) {
+			select:hover:not(:disabled) {
+				border-color: var(--puresv-border-strong);
+			}
 		}
 
 		select:focus-visible {

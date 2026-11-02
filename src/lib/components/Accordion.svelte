@@ -58,6 +58,24 @@
 			border-top: 1px solid var(--puresv-border);
 		}
 
+		/* The panel grows on the same clock as the chevron instead of snapping
+		   open. Browsers without ::details-content keep the native instant open. */
+		.item {
+			interpolate-size: allow-keywords;
+		}
+
+		.item::details-content {
+			block-size: 0;
+			overflow: hidden;
+			transition:
+				block-size var(--puresv-duration) var(--puresv-ease-out),
+				content-visibility var(--puresv-duration) allow-discrete;
+		}
+
+		.item[open]::details-content {
+			block-size: auto;
+		}
+
 		.summary {
 			box-sizing: border-box;
 			display: flex;
@@ -75,8 +93,10 @@
 			transition: background-color var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.summary:hover {
-			background-color: var(--puresv-surface-2);
+		@media (hover: hover) {
+			.summary:hover {
+				background-color: var(--puresv-surface-2);
+			}
 		}
 
 		.summary::-webkit-details-marker {
@@ -105,12 +125,6 @@
 			font-size: var(--puresv-text-sm);
 			line-height: 1.6;
 			color: var(--puresv-text-muted);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.chevron {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

@@ -44,8 +44,10 @@
 			color: var(--puresv-text-muted);
 		}
 
-		input:hover:not(:disabled) {
-			border-color: var(--puresv-border-strong);
+		@media (hover: hover) {
+			input:hover:not(:disabled) {
+				border-color: var(--puresv-border-strong);
+			}
 		}
 
 		/* Crisp double-ring focus: a canvas gap, then the accent ring. Reads as

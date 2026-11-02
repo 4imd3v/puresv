@@ -77,10 +77,10 @@
 			opacity: 0;
 			transform: scale(0.96);
 			transition:
-				opacity 200ms var(--puresv-ease-out),
-				transform 200ms var(--puresv-ease-out),
-				display 200ms allow-discrete,
-				overlay 200ms allow-discrete;
+				opacity var(--puresv-duration-overlay) var(--puresv-ease-out),
+				transform var(--puresv-duration-overlay) var(--puresv-ease-out),
+				display var(--puresv-duration-overlay) allow-discrete,
+				overlay var(--puresv-duration-overlay) allow-discrete;
 		}
 
 		.modal[open] {
@@ -100,9 +100,9 @@
 			backdrop-filter: blur(2px);
 			opacity: 1;
 			transition:
-				opacity 200ms var(--puresv-ease-out),
-				display 200ms allow-discrete,
-				overlay 200ms allow-discrete;
+				opacity var(--puresv-duration-overlay) var(--puresv-ease-out),
+				display var(--puresv-duration-overlay) allow-discrete,
+				overlay var(--puresv-duration-overlay) allow-discrete;
 		}
 
 		@starting-style {
@@ -156,12 +156,19 @@
 			cursor: pointer;
 			transition:
 				background-color var(--puresv-duration) var(--puresv-ease-out),
-				color var(--puresv-duration) var(--puresv-ease-out);
+				color var(--puresv-duration) var(--puresv-ease-out),
+				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		.close:hover {
-			background-color: var(--puresv-surface-2);
-			color: var(--puresv-text);
+		.close:active {
+			transform: scale(0.97);
+		}
+
+		@media (hover: hover) {
+			.close:hover {
+				background-color: var(--puresv-surface-2);
+				color: var(--puresv-text);
+			}
 		}
 
 		.close:focus-visible {
@@ -182,11 +189,6 @@
 			line-height: 1.6;
 		}
 
-		@media (prefers-reduced-motion: reduce) {
-			.modal,
-			.modal::backdrop {
-				transition-duration: 0.01ms;
-			}
-		}
+
 	}
 </style>

@@ -26,7 +26,9 @@
 		.skeleton {
 			border-radius: var(--puresv-radius-sm);
 			background-color: var(--puresv-fill-muted);
-			animation: puresv-pulse 1.4s var(--puresv-ease) infinite;
+			/* ease-in-out, not the UI ease-out: a symmetric pulse that snaps at
+			   both ends reads as a flicker. */
+			animation: puresv-pulse 1.4s ease-in-out infinite;
 		}
 
 		.skeleton.circle {

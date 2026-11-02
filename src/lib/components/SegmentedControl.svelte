@@ -19,6 +19,29 @@
 
 	let group = $state<HTMLDivElement | null>(null);
 
+	// The selected segment's ink is its own element so it can slide between
+	// segments instead of cross-fading. Measured in px because segments are
+	// content-sized.
+	let fillX = $state(0);
+	let fillWidth = $state(0);
+
+	$effect(() => {
+		// Tracking the selection here re-measures it whenever it moves.
+		const index = options.findIndex((option) => option.value === value);
+		const selected =
+			index === -1 ? null : group?.querySelectorAll<HTMLButtonElement>('[role="radio"]')[index];
+		if (!selected) return;
+		function measure() {
+			fillX = selected.offsetLeft;
+			fillWidth = selected.offsetWidth;
+		}
+		measure();
+		// Segments shrink inside a narrow container, so follow the selected box.
+		const observer = new ResizeObserver(measure);
+		observer.observe(selected);
+		return () => observer.disconnect();
+	});
+
 	function enabledIndexes() {
 		return options.map((option, index) => (option.disabled ? -1 : index)).filter((i) => i !== -1);
 	}
@@ -45,6 +68,12 @@
 </script>
 
 <div class="segmented" role="radiogroup" bind:this={group} {...rest}>
+	<span
+		class="indicator"
+		aria-hidden="true"
+		style:transform={`translateX(${fillX}px)`}
+		style:width={`${fillWidth}px`}
+	></span>
 	{#each options as option (option.value)}
 		<button
 			type="button"
@@ -65,6 +94,10 @@
 		/* A track with a single ink-filled selected segment — the same weight as
 		   a solid Button, so "selected" always looks the same across the library. */
 		.segmented {
+			position: relative;
+			/* Own stacking context, so the -1 indicator paints above this track's
+			   background but below the labels. */
+			isolation: isolate;
 			box-sizing: border-box;
 			display: inline-flex;
 			gap: 2px;
@@ -73,6 +106,20 @@
 			border: 1px solid var(--puresv-border);
 			border-radius: var(--puresv-radius-md);
 			background-color: var(--puresv-surface);
+		}
+
+		/* The ink fill, slid into place. A negative z-index puts it behind the
+		   labels, so the text is never covered. */
+		.indicator {
+			position: absolute;
+			inset-block: 2px;
+			inset-inline-start: 0;
+			z-index: -1;
+			border-radius: var(--puresv-radius-sm);
+			background-color: var(--puresv-primary);
+			transition:
+				width var(--puresv-duration-overlay) var(--puresv-ease-in-out),
+				transform var(--puresv-duration-overlay) var(--puresv-ease-in-out);
 		}
 
 		button {
@@ -90,16 +137,24 @@
 			cursor: pointer;
 			transition:
 				background-color var(--puresv-duration) var(--puresv-ease-out),
-				color var(--puresv-duration) var(--puresv-ease-out);
+				color var(--puresv-duration) var(--puresv-ease-out),
+				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		button:hover:not(:disabled):not([aria-checked="true"]) {
-			background-color: var(--puresv-surface-2);
-			color: var(--puresv-text);
+		button:active:not(:disabled) {
+			transform: scale(0.97);
 		}
 
+		@media (hover: hover) {
+			button:hover:not(:disabled):not([aria-checked="true"]) {
+				background-color: var(--puresv-surface-2);
+				color: var(--puresv-text);
+			}
+		}
+
+		/* The fill is the .indicator, so the selected segment only recolors its
+		   label and lets the ink slide underneath. */
 		button[aria-checked="true"] {
-			background-color: var(--puresv-primary);
 			color: var(--puresv-on-primary);
 		}
 
@@ -111,12 +166,6 @@
 		button:disabled {
 			opacity: 0.45;
 			cursor: not-allowed;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			button {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>

@@ -114,12 +114,19 @@
 			cursor: pointer;
 			transition:
 				background-color var(--puresv-duration) var(--puresv-ease-out),
-				color var(--puresv-duration) var(--puresv-ease-out);
+				color var(--puresv-duration) var(--puresv-ease-out),
+				transform var(--puresv-duration) var(--puresv-ease-out);
 		}
 
-		button:hover:not(:disabled) {
-			background-color: var(--puresv-surface-2);
-			color: var(--puresv-text);
+		button:active:not(:disabled) {
+			transform: scale(0.97);
+		}
+
+		@media (hover: hover) {
+			button:hover:not(:disabled) {
+				background-color: var(--puresv-surface-2);
+				color: var(--puresv-text);
+			}
 		}
 
 		button:focus-visible {
@@ -133,9 +140,11 @@
 			color: var(--puresv-on-primary);
 		}
 
-		.page[aria-current="page"]:hover {
-			background-color: var(--puresv-primary-hover);
-			color: var(--puresv-on-primary);
+		@media (hover: hover) {
+			.page[aria-current="page"]:hover {
+				background-color: var(--puresv-primary-hover);
+				color: var(--puresv-on-primary);
+			}
 		}
 
 		.step:disabled {
@@ -154,12 +163,6 @@
 			justify-content: center;
 			min-width: var(--puresv-space-5);
 			color: var(--puresv-text-muted);
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			button {
-				transition-duration: 0.01ms;
-			}
 		}
 	}
 </style>
