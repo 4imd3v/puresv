@@ -19,21 +19,22 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      # pnpm for install/build: package.json pins pnpm in devEngines and .npmrc
-      # has engine-strict, so npm aborts inside this repo.
+      # pnpm for install/build: package.json pins pnpm in devEngines, so npm
+      # refuses to run inside this repo (EBADDEVENGINES).
       - uses: pnpm/action-setup@v4
         with:
           version: 12.11.2
           run_install: false
 
-      # registry-url only points the CLI at npmjs. Do NOT add NODE_AUTH_TOKEN —
-      # a long-lived token would shadow the OIDC exchange.
-      - uses: actions/setup-node@v4
+      # Deliberately NO registry-url and no token: setup-node would write
+      # '//registry.npmjs.org/:_authToken=...' pointing at NODE_AUTH_TOKEN (the
+      # GitHub token), and a token in .npmrc shadows the OIDC exchange. npm
+      # already defaults to registry.npmjs.org.
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
 
@@ -53,6 +54,7 @@ jobs:
             exit 1
           fi
           echo "node $(node -v) / npm $(npm -v)"
+          echo "NODE_AUTH_TOKEN is ${NODE_AUTH_TOKEN:-<unset>}"
 
       # Build the tarball with pnpm (prepack rebuilds dist and runs publint),
       # then publish it with npm from a neutral directory: only the npm CLI
@@ -60,3 +62,17 @@ jobs:
       - run: pnpm pack --pack-destination "$RUNNER_TEMP"
 
       - run: cd "$RUNNER_TEMP" && npm publish puresv-*.tgz
+
+      # If the publish above fails, print what the registry actually sees so the
+      # mismatch is visible instead of guessed at.
+      - name: Diagnose the trusted publisher
+        if: failure()
+        run: |
+          set +e
+          echo "--- OIDC claims sent to npm ---"
+          ID=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=npm:registry.npmjs.org" \
+            | python3 -c 'import sys,json;print(json.load(sys.stdin)["value"])')
+          echo "$ID" | python3 -c 'import sys,base64,json; p=sys.stdin.read().strip().split(".")[1]; p+="="*(-len(p)%4); c=json.loads(base64.urlsafe_b64decode(p)); print(json.dumps({k:c.get(k) for k in ("repository","repository_owner","workflow_ref","job_workflow_ref","environment","ref","event_name")}, indent=1))'
+          echo "--- does the publisher allow npm stage publish? ---"
+          cd "$RUNNER_TEMP" && npm stage publish puresv-*.tgz --dry-run
