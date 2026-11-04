@@ -1,6 +1,6 @@
 {
   "name": "puresv",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Pure Svelte 5 UI components styled with modern CSS. No runtime dependencies, no utility-class framework.",
   "keywords": [
     "components",
