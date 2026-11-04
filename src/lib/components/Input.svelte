@@ -9,13 +9,20 @@
 		error?: string;
 	}
 
-	let { label, error, "aria-describedby": describedBy, ...rest }: Props = $props();
+	let {
+		label,
+		error,
+		value = $bindable(),
+		"aria-describedby": describedBy,
+		...rest
+	}: Props = $props();
 </script>
 
 <Field {label} {error}>
 	{#snippet children(errorId)}
 		<input
 			{...rest}
+			{value}
 			aria-invalid={error ? true : undefined}
 			aria-describedby={[describedBy, errorId].filter(Boolean).join(" ") || undefined}
 		/>

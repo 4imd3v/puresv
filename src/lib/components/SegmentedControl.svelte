@@ -28,17 +28,17 @@
 	$effect(() => {
 		// Tracking the selection here re-measures it whenever it moves.
 		const index = options.findIndex((option) => option.value === value);
-		const selected =
+		const element =
 			index === -1 ? null : group?.querySelectorAll<HTMLButtonElement>('[role="radio"]')[index];
-		if (!selected) return;
-		function measure() {
-			fillX = selected.offsetLeft;
-			fillWidth = selected.offsetWidth;
-		}
+		if (!element) return;
+		const measure = () => {
+			fillX = element.offsetLeft;
+			fillWidth = element.offsetWidth;
+		};
 		measure();
 		// Segments shrink inside a narrow container, so follow the selected box.
 		const observer = new ResizeObserver(measure);
-		observer.observe(selected);
+		observer.observe(element);
 		return () => observer.disconnect();
 	});
 

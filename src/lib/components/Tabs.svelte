@@ -38,7 +38,13 @@
 	}
 </script>
 
-<div class="tabs" role="tablist" bind:this={tablist} onkeydown={onKeydown}>
+<div
+	class="tabs"
+	role="tablist"
+	tabindex={-1}
+	bind:this={tablist}
+	onkeydown={onKeydown}
+>
 	{#each tabs as tab (tab.id)}
 		<button
 			type="button"

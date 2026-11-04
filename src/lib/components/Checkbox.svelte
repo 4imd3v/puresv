@@ -20,13 +20,14 @@
 	// The native property cannot be set from markup, and the browser clears it on
 	// activation, so mirror it both ways.
 	$effect(() => {
-		if (!input) return;
-		input.indeterminate = indeterminate;
+		const element = input;
+		if (!element) return;
+		element.indeterminate = indeterminate;
 		function onChange() {
 			if (indeterminate) indeterminate = false;
 		}
-		input.addEventListener("change", onChange);
-		return () => input.removeEventListener("change", onChange);
+		element.addEventListener("change", onChange);
+		return () => element.removeEventListener("change", onChange);
 	});
 </script>
 
