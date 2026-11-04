@@ -3,6 +3,7 @@
   import { page } from "$app/state";
   import { Badge, SegmentedControl } from "#lib";
   import { topLinks } from "./_shared/nav";
+  import { version } from "../../package.json";
 
   let { children } = $props();
 
@@ -42,7 +43,7 @@
     <a class="brand" href="/">
       <span class="brand-mark" aria-hidden="true">PS</span>
       <span class="brand-name">PureSV</span>
-      <span class="version"><Badge tone="neutral">v0.0.1</Badge></span>
+      <span class="version"><Badge tone="neutral">v{version}</Badge></span>
     </a>
 
     <nav class="topnav" aria-label="Main">
