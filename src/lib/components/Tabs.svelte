@@ -68,7 +68,11 @@
 	aria-labelledby={`${uid}-tab-${active}`}
 	tabindex={0}
 >
-	{@render panel(active)}
+	{#key active}
+		<div class="panel-content">
+			{@render panel(active)}
+		</div>
+	{/key}
 </div>
 
 <style>
@@ -130,6 +134,18 @@
 
 		.panel {
 			padding-block-start: var(--puresv-space-4);
+		}
+
+		/* The incoming panel fades in; the old one is gone at once. Opacity
+		   only — a panel swap is a content change, not an entrance. */
+		.panel-content {
+			transition: opacity var(--puresv-duration) var(--puresv-ease-out);
+		}
+
+		@starting-style {
+			.panel-content {
+				opacity: 0;
+			}
 		}
 
 		.panel:focus-visible {

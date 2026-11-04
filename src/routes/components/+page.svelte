@@ -81,10 +81,12 @@
         color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .chip:hover {
-      border-color: var(--puresv-accent);
-      background-color: var(--puresv-accent-soft);
-      color: var(--puresv-accent-text);
+    @media (hover: hover) {
+      .chip:hover {
+        border-color: var(--puresv-accent);
+        background-color: var(--puresv-accent-soft);
+        color: var(--puresv-accent-text);
+      }
     }
   }
 </style>

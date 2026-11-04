@@ -72,8 +72,10 @@
       cursor: pointer;
     }
 
-    .demo-code summary:hover {
-      color: var(--puresv-text);
+    @media (hover: hover) {
+      .demo-code summary:hover {
+        color: var(--puresv-text);
+      }
     }
 
     .demo-code pre {

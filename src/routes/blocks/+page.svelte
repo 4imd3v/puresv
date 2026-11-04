@@ -112,8 +112,10 @@
       transition: border-color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .card:hover {
-      border-color: var(--puresv-border-strong);
+    @media (hover: hover) {
+      .card:hover {
+        border-color: var(--puresv-border-strong);
+      }
     }
 
     .title {

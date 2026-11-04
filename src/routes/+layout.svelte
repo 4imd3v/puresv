@@ -188,9 +188,11 @@
         color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .topnav a:hover {
-      background-color: var(--puresv-surface);
-      color: var(--puresv-text);
+    @media (hover: hover) {
+      .topnav a:hover {
+        background-color: var(--puresv-surface);
+        color: var(--puresv-text);
+      }
     }
 
     /* The current page reads stronger than a hovered one. */
@@ -269,8 +271,10 @@
       transition: color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .footer-nav a:hover {
-      color: var(--puresv-text);
+    @media (hover: hover) {
+      .footer-nav a:hover {
+        color: var(--puresv-text);
+      }
     }
 
     .footer-nav a:focus-visible {

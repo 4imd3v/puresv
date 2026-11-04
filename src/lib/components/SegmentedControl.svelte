@@ -24,6 +24,10 @@
 	// content-sized.
 	let fillX = $state(0);
 	let fillWidth = $state(0);
+	// The first paint positions the ink without motion; the transition may only
+	// run once the user has moved it, or every instance would slide in from the
+	// left edge on page load.
+	let ready = $state(false);
 
 	$effect(() => {
 		// Tracking the selection here re-measures it whenever it moves.
@@ -41,6 +45,12 @@
 		observer.observe(element);
 		return () => observer.disconnect();
 	});
+
+	// Selecting is also what arms the ink's transition — see `ready`.
+	function select(next: string) {
+		value = next;
+		ready = true;
+	}
 
 	function enabledIndexes() {
 		return options.map((option, index) => (option.disabled ? -1 : index)).filter((i) => i !== -1);
@@ -61,7 +71,7 @@
 		event.preventDefault();
 		const option = options[next ?? 0];
 		if (!option) return;
-		value = option.value;
+		select(option.value);
 		await tick();
 		group?.querySelectorAll<HTMLButtonElement>('[role="radio"]')[next]?.focus();
 	}
@@ -70,6 +80,7 @@
 <div class="segmented" role="radiogroup" bind:this={group} {...rest}>
 	<span
 		class="indicator"
+		class:ready
 		aria-hidden="true"
 		style:transform={`translateX(${fillX}px)`}
 		style:width={`${fillWidth}px`}
@@ -81,7 +92,7 @@
 			aria-checked={value === option.value}
 			tabindex={value === option.value ? 0 : -1}
 			disabled={option.disabled}
-			onclick={() => (value = option.value)}
+			onclick={() => select(option.value)}
 			onkeydown={onKeydown}
 		>
 			{option.label}
@@ -117,6 +128,11 @@
 			z-index: -1;
 			border-radius: var(--puresv-radius-sm);
 			background-color: var(--puresv-primary);
+		}
+
+		/* Enabled by the first selection: the ink must land in place on load
+		   without a transition, then slide for every later move. */
+		.indicator.ready {
 			transition:
 				width var(--puresv-duration-overlay) var(--puresv-ease-in-out),
 				transform var(--puresv-duration-overlay) var(--puresv-ease-in-out);

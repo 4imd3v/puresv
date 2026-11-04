@@ -311,8 +311,10 @@
       white-space: nowrap;
     }
 
-    .all:hover {
-      text-decoration: underline;
+    @media (hover: hover) {
+      .all:hover {
+        text-decoration: underline;
+      }
     }
 
     .all:focus-visible {
@@ -356,8 +358,10 @@
       transition: border-color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .showcase-card:hover {
-      border-color: var(--puresv-border-strong);
+    @media (hover: hover) {
+      .showcase-card:hover {
+        border-color: var(--puresv-border-strong);
+      }
     }
 
     .showcase-card:focus-visible {

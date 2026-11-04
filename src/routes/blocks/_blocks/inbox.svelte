@@ -110,24 +110,26 @@
     </div>
 
     <article class="reader">
-      <header class="reader-head">
-        <div>
-          <h3>{current.subject}</h3>
-          <p class="reader-meta">
-            <Avatar name={current.from} size="sm" />
-            {current.from} · {current.time}
-          </p>
+      {#key current.id}
+        <header class="reader-head">
+          <div>
+            <h3>{current.subject}</h3>
+            <p class="reader-meta">
+              <Avatar name={current.from} size="sm" />
+              {current.from} · {current.time}
+            </p>
+          </div>
+          <Button variant="outline" size="sm">Reply</Button>
+        </header>
+
+        <Separator />
+
+        <div class="reader-body">
+          {#each current.body as paragraph (paragraph)}
+            <p>{paragraph}</p>
+          {/each}
         </div>
-        <Button variant="outline" size="sm">Reply</Button>
-      </header>
-
-      <Separator />
-
-      <div class="reader-body">
-        {#each current.body as paragraph (paragraph)}
-          <p>{paragraph}</p>
-        {/each}
-      </div>
+      {/key}
 
       <div class="composer">
         <Textarea label="Reply" rows={3} placeholder="Write a reply…" />
@@ -211,8 +213,10 @@
       transition: background-color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .message:hover {
-      background-color: var(--puresv-surface-2);
+    @media (hover: hover) {
+      .message:hover {
+        background-color: var(--puresv-surface-2);
+      }
     }
 
     .message[aria-current="true"] {
@@ -322,6 +326,20 @@
 
     .reader-body p {
       margin: 0;
+    }
+
+    /* The incoming message fades in; the old one is gone at once, so there is
+       nothing to double-expose. Opacity only — no movement on a list click. */
+    .reader-head,
+    .reader-body {
+      transition: opacity var(--puresv-duration) var(--puresv-ease-out);
+    }
+
+    @starting-style {
+      .reader-head,
+      .reader-body {
+        opacity: 0;
+      }
     }
 
     .composer {

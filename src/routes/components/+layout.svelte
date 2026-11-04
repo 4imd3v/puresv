@@ -103,9 +103,11 @@
         color var(--puresv-duration) var(--puresv-ease);
     }
 
-    .nav-group a:hover {
-      background-color: var(--puresv-surface);
-      color: var(--puresv-text);
+    @media (hover: hover) {
+      .nav-group a:hover {
+        background-color: var(--puresv-surface);
+        color: var(--puresv-text);
+      }
     }
 
     .nav-group a[aria-current="page"] {

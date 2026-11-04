@@ -256,9 +256,11 @@
         color var(--puresv-duration) var(--puresv-ease-out);
     }
 
-    .nav-link:hover {
-      background-color: var(--puresv-surface-2);
-      color: var(--puresv-text);
+    @media (hover: hover) {
+      .nav-link:hover {
+        background-color: var(--puresv-surface-2);
+        color: var(--puresv-text);
+      }
     }
 
     .nav-link[aria-current="page"] {

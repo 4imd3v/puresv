@@ -8,6 +8,8 @@ const tabs = [
   { id: "profile", label: "Profile" },
 ];
 const panel = createRawSnippet(() => ({ render: () => "Panel" }));
+// The panel snippet receives the active tab id, so a switch is observable.
+const activePanel = createRawSnippet<[string]>((id) => ({ render: () => `<p>${id()}</p>` }));
 
 afterEach(cleanup);
 
@@ -40,6 +42,14 @@ describe("Tabs", () => {
     const els = screen.getAllByRole("tab");
     expect(els[0].getAttribute("aria-selected")).toBe("false");
     expect(els[1].getAttribute("aria-selected")).toBe("true");
+  });
+
+  it("replaces the panel content when the active tab changes", async () => {
+    render(Tabs, { props: { tabs, panel: activePanel } });
+    expect(screen.getByText("home")).toBeTruthy();
+    await fireEvent.click(screen.getByText("Profile"));
+    expect(screen.getByText("profile")).toBeTruthy();
+    expect(screen.queryByText("home")).toBeNull();
   });
 
   it("moves selection with arrow keys", async () => {

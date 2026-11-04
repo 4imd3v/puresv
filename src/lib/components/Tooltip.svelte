@@ -90,12 +90,21 @@
 			top: -0.1875rem;
 		}
 
-		/* Hover for pointers, focus-within for the keyboard. */
-		.tooltip:hover .bubble,
+		/* focus-within is the keyboard path, so it must stay ungated: gating the
+		   shared pair would disable tooltips on touch devices. Hover is
+		   pointer-only, so the declarations are repeated rather than shared. */
 		.tooltip:focus-within .bubble {
 			opacity: 1;
 			visibility: visible;
 			transform: translateX(-50%) translateY(0) scale(1);
+		}
+
+		@media (hover: hover) {
+			.tooltip:hover .bubble {
+				opacity: 1;
+				visibility: visible;
+				transform: translateX(-50%) translateY(0) scale(1);
+			}
 		}
 	}
 </style>
